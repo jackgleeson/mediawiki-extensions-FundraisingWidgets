@@ -1,0 +1,177 @@
+/**
+ * FundraisingWidgets - Image Widget Styles
+ */
+
+.frw-image-widget {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: var( --frw-border-radius );
+	overflow: hidden;
+}
+
+/* Size variations */
+.frw-image-widget--small {
+	width: 280px;
+	height: 200px;
+}
+
+.frw-image-widget--medium {
+	width: 400px;
+	height: 300px;
+}
+
+.frw-image-widget--large {
+	width: 100%;
+	max-width: 600px;
+	height: 400px;
+}
+
+/* Dark overlay for text readability */
+.frw-image-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	text-align: center;
+	background: linear-gradient(
+		to bottom,
+		rgba( 0, 0, 0, 0.1 ) 0%,
+		rgba( 0, 0, 0, 0.35 ) 100%
+	);
+}
+
+/* When no caption, position button based on placement class */
+.frw-image-widget:not( .frw-image-widget--has-caption ) .frw-image-overlay {
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.frw-image-widget:not( .frw-image-widget--has-caption ) .frw-image-overlay .frw-donate-button {
+	position: absolute;
+}
+
+/* Button placement positions */
+.frw-image-widget--button-top-left .frw-image-overlay .frw-donate-button {
+	top: 16px;
+	left: 16px;
+}
+
+.frw-image-widget--button-top-right .frw-image-overlay .frw-donate-button {
+	top: 16px;
+	right: 16px;
+}
+
+.frw-image-widget--button-bottom-left .frw-image-overlay .frw-donate-button {
+	bottom: 16px;
+	left: 16px;
+}
+
+.frw-image-widget--button-bottom-right .frw-image-overlay .frw-donate-button {
+	bottom: 16px;
+	right: 16px;
+}
+
+.frw-image-text {
+	margin: 0 0 16px;
+	font-family: var( --frw-font-family );
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #fff;
+	text-shadow: 0 1px 3px rgba( 0, 0, 0, 0.5 );
+	max-width: 80%;
+}
+
+.frw-image-widget--small .frw-image-text {
+	font-size: 0.85rem;
+	margin-bottom: 12px;
+}
+
+.frw-image-widget--large .frw-image-text {
+	font-size: 1.1rem;
+	margin-bottom: 20px;
+}
+
+/* Caption bar at bottom */
+.frw-image-caption-bar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 16px 20px;
+	background: rgba( 0, 0, 0, 0.7 );
+	backdrop-filter: blur( 4px );
+}
+
+.frw-image-caption {
+	margin: 0;
+	font-family: var( --frw-font-family );
+	font-size: 0.95rem;
+	line-height: 1.4;
+	color: #fff;
+	flex: 1;
+}
+
+.frw-image-widget--small .frw-image-caption-bar {
+	padding: 12px 16px;
+	gap: 12px;
+}
+
+.frw-image-widget--small .frw-image-caption {
+	font-size: 0.85rem;
+}
+
+.frw-image-widget--large .frw-image-caption-bar {
+	padding: 20px 24px;
+}
+
+.frw-image-widget--large .frw-image-caption {
+	font-size: 1rem;
+}
+
+/* Adjust overlay when caption bar is present */
+.frw-image-widget--has-caption .frw-image-overlay {
+	padding-bottom: 80px;
+}
+
+.frw-image-widget--has-caption.frw-image-widget--small .frw-image-overlay {
+	padding-bottom: 60px;
+}
+
+.frw-image-widget--has-caption.frw-image-widget--large .frw-image-overlay {
+	padding-bottom: 100px;
+}
+
+/* Button adjustments for image widget - use small size by default */
+.frw-image-widget .frw-donate-button {
+	padding: 8px 16px;
+	font-size: 0.85rem;
+	box-shadow: 0 4px 12px rgba( 0, 0, 0, 0.3 );
+}
+
+/* Button in caption bar */
+.frw-image-caption-bar .frw-donate-button {
+	flex-shrink: 0;
+	box-shadow: none;
+}
+
+.frw-image-widget--small .frw-donate-button {
+	padding: 6px 12px;
+	font-size: 0.8rem;
+}
+
+.frw-image-widget--large .frw-donate-button {
+	padding: 10px 20px;
+	font-size: 0.95rem;
+}

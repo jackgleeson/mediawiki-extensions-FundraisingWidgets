@@ -1,0 +1,178 @@
+/**
+ * FundraisingWidgets - Banner Styles
+ */
+
+.frw-banner {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	padding: 20px 24px;
+	font-family: var( --frw-font-family );
+	background-color: var( --frw-color-background-subtle );
+	border: 1px solid var( --frw-color-border-subtle );
+	border-radius: var( --frw-border-radius );
+	box-shadow: var( --frw-box-shadow );
+}
+
+.frw-banner--dismissible {
+	padding-right: 52px;
+}
+
+.frw-banner-close {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	font-size: 24px;
+	line-height: 1;
+	color: var( --frw-color-text-subtle );
+	background: transparent;
+	border: none;
+	border-radius: var( --frw-border-radius );
+	cursor: pointer;
+	transition: background-color var( --frw-transition-duration ) ease,
+		color var( --frw-transition-duration ) ease;
+}
+
+.frw-banner-close:hover {
+	color: var( --frw-color-text );
+	background-color: rgba( 0, 0, 0, 0.05 );
+}
+
+.frw-banner-close:focus {
+	outline: 2px solid var( --frw-color-primary );
+	outline-offset: 2px;
+}
+
+/* Logo container */
+.frw-banner-logo {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-shrink: 0;
+}
+
+/* Individual logo styles */
+.frw-logo {
+	display: block;
+	height: auto;
+}
+
+.frw-logo-globe {
+	width: 50px;
+	height: 50px;
+}
+
+.frw-logo-wordmark {
+	height: 24px;
+	width: auto;
+}
+
+.frw-logo-wmf {
+	height: 40px;
+	width: auto;
+}
+
+.frw-logo-globe-hands {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+/* Logo type variations */
+.frw-banner-logo--globe {
+	/* Globe only - centered */
+}
+
+.frw-banner-logo--wordmark {
+	/* Wordmark only */
+}
+
+.frw-banner-logo--combined {
+	/* Globe + wordmark side by side */
+	flex-direction: row;
+}
+
+.frw-banner-logo--wmf {
+	/* WMF logo */
+}
+
+.frw-banner-logo--globe-hands {
+	/* Globe in hands photo */
+}
+
+/* Content area */
+.frw-banner-content {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 16px;
+	flex: 1;
+}
+
+.frw-banner-message {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.6;
+	color: var( --frw-color-text );
+	flex: 1;
+	min-width: 200px;
+}
+
+/* Responsive layout */
+@media ( max-width: 768px ) {
+	.frw-banner {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 16px;
+		padding: 20px;
+	}
+
+	.frw-banner--dismissible {
+		padding-right: 20px;
+		padding-top: 48px;
+	}
+
+	.frw-banner-close {
+		top: 8px;
+		right: 8px;
+	}
+
+	.frw-banner-logo {
+		justify-content: center;
+	}
+
+	.frw-banner-logo--combined {
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.frw-banner-content {
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+	}
+
+	.frw-banner-message {
+		text-align: center;
+		min-width: auto;
+	}
+
+	.frw-banner .frw-donate-button {
+		width: 100%;
+		max-width: 300px;
+	}
+}
+
+/* Hidden state for dismissed banners */
+.frw-banner--hidden {
+	display: none;
+}

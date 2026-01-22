@@ -1,0 +1,433 @@
+/**
+ * FundraisingWidgets - Showcase Page Styles (Modern UI)
+ */
+
+.frw-showcase-intro {
+	margin-bottom: 32px;
+	padding: 20px 24px;
+	background: linear-gradient( 135deg, #667eea 0%, #764ba2 100% );
+	color: #fff;
+	border-radius: 12px;
+}
+
+.frw-showcase-intro p {
+	margin: 0;
+	font-size: 1.1rem;
+	line-height: 1.6;
+}
+
+/* Widget grid layout */
+.frw-showcase-grid {
+	display: grid;
+	grid-template-columns: repeat( 2, 1fr );
+	gap: 24px;
+}
+
+.frw-showcase-section {
+	background-color: #fff;
+	border-radius: 16px;
+	box-shadow: 0 4px 20px rgba( 0, 0, 0, 0.08 );
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.frw-showcase-section h2 {
+	margin: 0;
+	padding: 20px 24px;
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: var( --frw-color-text );
+	border-bottom: 1px solid #eee;
+}
+
+.frw-showcase-section h3 {
+	display: none;
+}
+
+/* Dark preview area - like the design reference */
+.frw-showcase-preview {
+	background-color: #2d2d2d;
+	padding: 48px 24px 24px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 24px;
+	min-height: 200px;
+	border-radius: 12px;
+	margin: 20px;
+}
+
+.frw-preview-area {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	border: none;
+	min-height: 60px;
+	padding: 0;
+}
+
+.frw-preview-area--wide {
+	width: 100%;
+	max-width: 600px;
+}
+
+/* Configuration area */
+.frw-showcase-config {
+	padding: 0 24px 24px;
+}
+
+.frw-config-form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 20px;
+	padding: 0;
+	background: transparent;
+}
+
+.frw-config-field {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	flex: 1;
+	min-width: 180px;
+}
+
+.frw-config-field--full {
+	flex-basis: 100%;
+	min-width: 100%;
+}
+
+.frw-config-field label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: #666;
+}
+
+.frw-config-input {
+	padding: 12px 16px;
+	font-family: var( --frw-font-family );
+	font-size: 1rem;
+	color: var( --frw-color-text );
+	background-color: #f8f9fa;
+	border: 2px solid #e9ecef;
+	border-radius: 8px;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.frw-config-input:focus {
+	outline: none;
+	border-color: var( --frw-color-primary );
+	box-shadow: 0 0 0 3px rgba( 51, 102, 204, 0.1 );
+}
+
+.frw-config-input:hover {
+	border-color: #ced4da;
+}
+
+textarea.frw-config-input {
+	resize: vertical;
+	min-height: 80px;
+}
+
+/* Checkbox styling */
+.frw-config-field input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	margin-right: 8px;
+	vertical-align: middle;
+	accent-color: var( --frw-color-primary );
+}
+
+.frw-config-field label:has(input[type="checkbox"]) {
+	display: flex;
+	align-items: center;
+	font-size: 0.9rem;
+	text-transform: none;
+	letter-spacing: normal;
+	color: var( --frw-color-text );
+	cursor: pointer;
+	padding: 12px 0;
+}
+
+/* Color picker row */
+.frw-color-picker {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+}
+
+.frw-color-option {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 3px solid transparent;
+	cursor: pointer;
+	transition: transform 0.15s ease, border-color 0.15s ease;
+	position: relative;
+}
+
+.frw-color-option:hover {
+	transform: scale( 1.1 );
+}
+
+.frw-color-option.frw-color-option--selected {
+	border-color: #fff;
+	box-shadow: 0 0 0 2px var( --frw-color-primary );
+}
+
+.frw-color-option.frw-color-option--selected::after {
+	content: '\2713';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0 1px 2px rgba( 0, 0, 0, 0.3 );
+}
+
+.frw-color-option--yellow { background-color: #ffdd00; }
+.frw-color-option--purple { background-color: #bd5fff; }
+.frw-color-option--blue { background-color: #5f7fff; }
+.frw-color-option--green { background-color: #40dca5; }
+.frw-color-option--red { background-color: #ff6471; }
+
+.frw-color-option--custom {
+	background: conic-gradient( red, yellow, lime, aqua, blue, magenta, red );
+	position: relative;
+}
+
+.frw-color-option--custom::before {
+	content: '\270E';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	color: #fff;
+	font-size: 16px;
+	text-shadow: 0 1px 2px rgba( 0, 0, 0, 0.5 );
+}
+
+/* Inline color picker - smaller version for form fields */
+.frw-color-picker--inline {
+	justify-content: flex-start;
+	gap: 6px;
+}
+
+.frw-color-picker--inline .frw-color-option {
+	width: 24px;
+	height: 24px;
+	border-width: 2px;
+}
+
+.frw-color-picker--inline .frw-color-option:hover {
+	transform: scale( 1.15 );
+}
+
+.frw-color-picker--inline .frw-color-option.frw-color-option--selected::after {
+	font-size: 10px;
+}
+
+/* Code output area */
+.frw-showcase-code {
+	padding: 0 24px 24px;
+}
+
+/* Format tabs */
+.frw-format-tabs {
+	display: flex;
+	gap: 0;
+	margin-bottom: 12px;
+	border-bottom: 2px solid #e9ecef;
+}
+
+.frw-format-tab {
+	padding: 10px 20px;
+	font-family: var( --frw-font-family );
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #666;
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -2px;
+	cursor: pointer;
+	transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.frw-format-tab:hover {
+	color: var( --frw-color-primary );
+}
+
+.frw-format-tab--active {
+	color: var( --frw-color-primary );
+	border-bottom-color: var( --frw-color-primary );
+}
+
+.frw-format-content {
+	display: none;
+}
+
+.frw-format-content--active {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.frw-code-output {
+	flex: 1;
+	min-width: 0;
+	margin: 0;
+	padding: 14px 16px;
+	font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+	font-size: 0.8rem;
+	line-height: 1.5;
+	color: #e9ecef;
+	background-color: #1e1e1e;
+	border: none;
+	border-radius: 8px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.frw-code-output--coming-soon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 80px;
+	font-family: var( --frw-font-family );
+	font-size: 1rem;
+	font-weight: 500;
+	color: #888;
+	font-style: italic;
+}
+
+.frw-copy-button {
+	padding: 14px 24px;
+	font-family: var( --frw-font-family );
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #fff;
+	background: linear-gradient( 135deg, #667eea 0%, #764ba2 100% );
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+	white-space: nowrap;
+}
+
+.frw-copy-button:hover {
+	transform: translateY( -2px );
+	box-shadow: 0 4px 12px rgba( 102, 126, 234, 0.4 );
+}
+
+.frw-copy-button:active {
+	transform: translateY( 0 );
+}
+
+.frw-copy-button:focus {
+	outline: 2px solid var( --frw-color-primary );
+	outline-offset: 2px;
+}
+
+.frw-copy-button--copied {
+	background: linear-gradient( 135deg, #11998e 0%, #38ef7d 100% );
+}
+
+/* Override button styles in dark preview */
+.frw-showcase-preview .frw-donate-button {
+	border-radius: 24px;
+	box-shadow: 0 4px 14px rgba( 0, 0, 0, 0.25 );
+}
+
+.frw-showcase-preview .frw-donate-button--small {
+	padding: 8px 16px;
+	font-size: 0.9rem;
+}
+
+.frw-showcase-preview .frw-donate-button--medium {
+	padding: 12px 24px;
+	font-size: 1rem;
+}
+
+.frw-showcase-preview .frw-donate-button--large {
+	padding: 16px 32px;
+	font-size: 1.2rem;
+}
+
+/* Override banner styles in dark preview */
+.frw-showcase-preview .frw-banner {
+	background-color: #fff;
+	max-width: 100%;
+}
+
+/* Override amount selector in dark preview */
+.frw-showcase-preview .frw-amount-selector {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 12px;
+}
+
+/* Image widget preview - allow large size */
+#frw-image-preview {
+	width: 100%;
+	max-width: none;
+}
+
+#frw-image-preview .frw-image-widget {
+	max-width: 100%;
+}
+
+#frw-image-preview .frw-image-widget--large {
+	width: 100%;
+	max-width: none;
+}
+
+/* Responsive adjustments */
+@media ( max-width: 992px ) {
+	.frw-showcase-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media ( max-width: 768px ) {
+	.frw-showcase-section {
+		border-radius: 12px;
+		margin: 0 -8px;
+	}
+
+	.frw-showcase-preview {
+		margin: 16px;
+		padding: 32px 16px;
+		border-radius: 8px;
+	}
+
+	.frw-config-form {
+		flex-direction: column;
+	}
+
+	.frw-config-field {
+		width: 100%;
+	}
+
+	.frw-showcase-code {
+		flex-direction: column;
+	}
+
+	.frw-code-output {
+		width: 100%;
+	}
+
+	.frw-copy-button {
+		width: 100%;
+	}
+}

@@ -1,0 +1,85 @@
+{
+	"name": "FundraisingWidgets",
+	"version": "1.0.0",
+	"author": [
+		"Wikimedia Foundation"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:FundraisingWidgets",
+	"descriptionmsg": "fundraisingwidgets-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\FundraisingWidgets\\": "includes/"
+	},
+	"MessagesDirs": {
+		"FundraisingWidgets": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"FundraisingWidgetsMagic": "FundraisingWidgets.i18n.magic.php"
+	},
+	"SpecialPages": {
+		"FundraisingWidgets": "MediaWiki\\Extension\\FundraisingWidgets\\SpecialFundraisingWidgets"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "MediaWiki\\Extension\\FundraisingWidgets\\FundraisingWidgetsHooks::onParserFirstCallInit"
+	},
+	"ResourceModules": {
+		"ext.fundraisingWidgets": {
+			"styles": [
+				"ext.fundraisingWidgets/styles.css",
+				"ext.fundraisingWidgets/donateButton.css",
+				"ext.fundraisingWidgets/banner.css",
+				"ext.fundraisingWidgets/imageWidget.css",
+				"ext.fundraisingWidgets/rabbitHole.css"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.fundraisingWidgets.js": {
+			"scripts": [
+				"ext.fundraisingWidgets.js/init.js"
+			],
+			"dependencies": [
+				"ext.fundraisingWidgets"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.fundraisingWidgets.showcase.styles": {
+			"styles": [
+				"ext.fundraisingWidgets.showcase/showcase.css"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.fundraisingWidgets.showcase": {
+			"scripts": [
+				"ext.fundraisingWidgets.showcase/showcase.js"
+			],
+			"dependencies": [
+				"ext.fundraisingWidgets",
+				"ext.fundraisingWidgets.js"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "FundraisingWidgets/resources"
+	},
+	"manifest_version": 2
+}

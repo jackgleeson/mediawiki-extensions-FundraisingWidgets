@@ -1,0 +1,48 @@
+/**
+ * FundraisingWidgets - Main Styles
+ * Common styles and CSS custom properties for all widgets
+ */
+
+:root {
+	--frw-color-primary: #36c;
+	--frw-color-primary-hover: #447ff5;
+	--frw-color-primary-active: #2a4b8d;
+	--frw-color-success: #14866d;
+	--frw-color-text: #202122;
+	--frw-color-text-subtle: #54595d;
+	--frw-color-background: #fff;
+	--frw-color-background-subtle: #f8f9fa;
+	--frw-color-border: #a2a9b1;
+	--frw-color-border-subtle: #c8ccd1;
+	--frw-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Lato, Helvetica, Arial, sans-serif;
+	--frw-border-radius: 2px;
+	--frw-transition-duration: 100ms;
+	--frw-box-shadow: 0 1px 3px rgba( 0, 0, 0, 0.1 );
+	--frw-box-shadow-hover: 0 2px 6px rgba( 0, 0, 0, 0.15 );
+}
+
+@media ( prefers-color-scheme: dark ) {
+	:root {
+		--frw-color-primary: #6699ff;
+		--frw-color-primary-hover: #88aaff;
+		--frw-color-primary-active: #5588ee;
+		--frw-color-text: #f8f9fa;
+		--frw-color-text-subtle: #a2a9b1;
+		--frw-color-background: #101418;
+		--frw-color-background-subtle: #1a1d21;
+		--frw-color-border: #54595d;
+		--frw-color-border-subtle: #3a3f45;
+	}
+}
+
+.frw-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect( 0, 0, 0, 0 );
+	white-space: nowrap;
+	border: 0;
+}
