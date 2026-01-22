@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\FundraisingWidgets;
 
-use HTMLForm;
 use SpecialPage;
 
 class SpecialFundraisingWidgets extends SpecialPage {
