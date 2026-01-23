@@ -489,7 +489,8 @@
 					intro.classList.add( 'frw-rabbit-hole-intro--hidden' );
 				}
 
-				if ( clickCount > 0 && clickCount % donateAfter === 0 ) {
+				// Show donate prompt after every N discoveries (not on the Nth click)
+				if ( clickCount % ( donateAfter + 1 ) === 0 ) {
 					showDonatePrompt();
 				} else {
 					donate.classList.add( 'frw-rabbit-hole-donate--hidden' );

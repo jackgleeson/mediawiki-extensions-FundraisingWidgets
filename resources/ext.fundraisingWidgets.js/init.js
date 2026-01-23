@@ -154,8 +154,8 @@
 					introEl.classList.add( 'frw-rabbit-hole-intro--hidden' );
 				}
 
-				// Check if we should show donate prompt
-				if ( clickCount > 0 && clickCount % donateAfter === 0 ) {
+				// Show donate prompt after every N discoveries (not on the Nth click)
+				if ( clickCount % ( donateAfter + 1 ) === 0 ) {
 					showDonatePrompt();
 				} else {
 					// Show a discovery
