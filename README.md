@@ -109,6 +109,19 @@ Visit `Special:FundraisingWidgets` on your wiki to:
 
 All widget styles use `!important` declarations to protect against style conflicts when embedded on external sites. The extension uses Wikimedia Commons URLs for images to ensure availability on external sites.
 
+## Browser Compatibility
+
+The `embed.js` script is written in ES5 syntax to ensure compatibility with older browsers, including Internet Explorer 11. Since this script runs on third-party sites where we cannot control the browser environment, we prioritize broad compatibility over modern syntax.
+
+This means the embed script intentionally uses:
+- `var` instead of `let`/`const`
+- Traditional `function` declarations instead of arrow functions
+- String concatenation instead of template literals
+- `indexOf()` instead of `includes()`
+- `for` loops instead of `for...of`
+
+The MediaWiki-side JavaScript (`init.js`) follows the same conventions for consistency, though MediaWiki's ResourceLoader could handle transpilation if needed.
+
 ## License
 
 GPL-2.0-or-later

@@ -1,6 +1,13 @@
 /**
  * FundraisingWidgets - Standalone Embed Script
  * Allows embedding fundraising widgets on external sites
+ *
+ * BROWSER COMPATIBILITY NOTE:
+ * This script intentionally uses ES5 syntax (var, function declarations,
+ * string concatenation, etc.) instead of ES6+ features (let/const, arrow
+ * functions, template literals, etc.) to ensure compatibility with older
+ * browsers like IE11. Since this script runs on third-party sites where
+ * we cannot control the browser environment, we prioritize broad compatibility.
  */
 ( function ( global ) {
 	'use strict';
