@@ -32,10 +32,11 @@ A customizable donation button with multiple sizes and colors.
 ```
 
 **Parameters:**
-- `size` - small, medium, large
+- `size` - small, medium, large (default: medium)
 - `text` - Button text (default: "Support Wikipedia")
-- `color` - blue, purple, green, red, yellow
+- `color` - blue, purple, green, red, yellow (default: blue)
 - `link` - Destination URL (default: https://donate.wikimedia.org)
+- `icons` - Show payment icons (true/false, default: false)
 
 ### Fundraising Banner
 
@@ -54,20 +55,20 @@ A banner with logo, message, and call-to-action button.
 
 ### Image Widget
 
-An image with an overlay donate button.
+An image with a caption bar and donate button.
 
 ```wikitext
-{{#fundraising-image: image=landscape | size=medium | button-position=bottom-right | button-color=blue }}
+{{#fundraising-image: image=snow-leopard | size=medium | button-color=blue | caption=You mean I can donate to this thing!!! }}
 ```
 
 **Parameters:**
-- `image` - landscape, eagle, mountain, snow-leopard, frog, cat-lizard, regal-cat
-- `size` - small, medium, large
-- `button-position` - top-left, top-right, bottom-left, bottom-right
-- `button-color` - blue, purple, green, red, yellow
-- `caption` - Optional caption text (moves button to caption bar)
+- `image` - landscape, eagle, mountain, snow-leopard, frog, cat-lizard, regal-cat (default: snow-leopard)
+- `size` - small, medium, large (default: medium)
+- `button-position` - top-left, top-right, bottom-left, bottom-right (default: bottom-right, only used when caption is empty)
+- `button-color` - blue, purple, green, red, yellow (default: blue)
+- `caption` - Caption text (default: "You mean I can donate to this thing!!!"). When set, button appears in caption bar. Set to empty string to show button on image overlay instead.
 - `button-text` - Button text (default: "Donate")
-- `button-link` - Button destination URL
+- `button-link` - Button destination URL (default: https://donate.wikimedia.org)
 
 ### Wikipedia Rabbit Hole
 
