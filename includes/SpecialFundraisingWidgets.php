@@ -278,7 +278,7 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'</div>' .
 			'<div class="frw-config-field frw-config-field--full">' .
 			'<label for="frw-image-caption">' . $this->msg( 'fundraisingwidgets-config-caption' )->escaped() . '</label>' .
-			'<input type="text" id="frw-image-caption" class="frw-config-input" value="" placeholder="Caption text (leave empty to show button on image)">' .
+			'<input type="text" id="frw-image-caption" class="frw-config-input" value="You mean I can donate to this thing!!!" placeholder="Caption text (leave empty to show button on image)">' .
 			'</div>' .
 			'</div>'
 		);
@@ -294,14 +294,14 @@ class SpecialFundraisingWidgets extends SpecialPage {
 		$out->addHTML( '</div>' );
 		// MediaWiki format
 		$out->addHTML( '<div class="frw-format-content frw-format-content--active" data-format="wikitext">' );
-		$out->addHTML( '<pre id="frw-image-code-wikitext" class="frw-code-output">{{#fundraising-image: image=snow-leopard | size=medium | button-position=bottom-right | button-color=blue }}</pre>' );
+		$out->addHTML( '<pre id="frw-image-code-wikitext" class="frw-code-output">{{#fundraising-image: image=snow-leopard | size=medium | button-color=blue | caption=You mean I can donate to this thing!!! }}</pre>' );
 		$out->addHTML( '<button type="button" class="frw-copy-button" data-target="frw-image-code-wikitext">' .
 			$this->msg( 'fundraisingwidgets-special-copy' )->escaped() . '</button>' );
 		$out->addHTML( '</div>' );
 		// JavaScript format
 		$out->addHTML( '<div class="frw-format-content" data-format="javascript">' );
 		$out->addHTML( '<pre id="frw-image-code-js" class="frw-code-output">' . htmlspecialchars( '<script src="' . $this->getConfig()->get( 'Server' ) . $this->getConfig()->get( 'ExtensionAssetsPath' ) . '/FundraisingWidgets/resources/embed.js"></script>
-<div class="frw-embed" data-widget="image" data-image="snow-leopard" data-size="medium" data-button-position="bottom-right" data-button-color="blue"></div>' ) . '</pre>' );
+<div class="frw-embed" data-widget="image" data-image="snow-leopard" data-size="medium" data-button-color="blue" data-caption="You mean I can donate to this thing!!!"></div>' ) . '</pre>' );
 		$out->addHTML( '<button type="button" class="frw-copy-button" data-target="frw-image-code-js">' .
 			$this->msg( 'fundraisingwidgets-special-copy' )->escaped() . '</button>' );
 		$out->addHTML( '</div>' );
@@ -321,10 +321,12 @@ class SpecialFundraisingWidgets extends SpecialPage {
 	private function renderImagePreview( $out ): void {
 		$imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Snow_Leopard_Looking_Up.jpg';
 		$out->addHTML(
-			'<div class="frw-image-widget frw-image-widget--medium frw-image-widget--button-bottom-right" style="background-image: url(\'' . htmlspecialchars( $imageUrl ) . '\');">' .
-			'<div class="frw-image-overlay">' .
+			'<div class="frw-image-widget frw-image-widget--medium frw-image-widget--has-caption" style="background-image: url(\'' . htmlspecialchars( $imageUrl ) . '\');">' .
+			'<div class="frw-image-overlay"></div>' .
+			'<div class="frw-image-caption-bar">' .
+			'<p class="frw-image-caption">You mean I can donate to this thing!!!</p>' .
 			'<a href="https://donate.wikimedia.org" class="frw-donate-button frw-donate-button--medium frw-donate-button--blue" role="button">' .
-			'<span class="frw-button-text">You mean I can donate to this thing!!!</span>' .
+			'<span class="frw-button-text">' . $this->msg( 'fundraisingwidgets-button-donate' )->escaped() . '</span>' .
 			'</a>' .
 			'</div>' .
 			'</div>'

@@ -291,12 +291,12 @@
 				captionBarHtml = '<div class="frw-image-caption-bar">' +
 					'<p class="frw-image-caption">' + escapeHtml( caption ) + '</p>' +
 					'<a href="https://donate.wikimedia.org" class="' + buttonClass + '" role="button">' +
-					'<span class="frw-button-text">You mean I can donate to this thing!!!</span>' +
+					'<span class="frw-button-text">Donate</span>' +
 					'</a>' +
 					'</div>';
 			} else {
 				buttonHtml = '<a href="https://donate.wikimedia.org" class="' + buttonClass + '" role="button">' +
-					'<span class="frw-button-text">You mean I can donate to this thing!!!</span>' +
+					'<span class="frw-button-text">Donate</span>' +
 					'</a>';
 			}
 

@@ -217,8 +217,11 @@
 			var size = container.getAttribute( 'data-size' ) || 'medium';
 			var position = container.getAttribute( 'data-button-position' ) || 'bottom-right';
 			var color = container.getAttribute( 'data-button-color' ) || 'blue';
-			var caption = container.getAttribute( 'data-caption' ) || '';
-			var buttonText = container.getAttribute( 'data-button-text' ) || 'You mean I can donate to this thing!!!';
+			var caption = container.getAttribute( 'data-caption' );
+			if ( caption === null ) {
+				caption = 'You mean I can donate to this thing!!!';
+			}
+			var buttonText = container.getAttribute( 'data-button-text' ) || 'Donate';
 			var buttonLink = container.getAttribute( 'data-button-link' ) || 'https://donate.wikimedia.org';
 
 			var validPositions = [ 'top-left', 'top-right', 'bottom-left', 'bottom-right' ];

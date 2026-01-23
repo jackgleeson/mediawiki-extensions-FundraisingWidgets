@@ -48,8 +48,8 @@ class FundraisingImage {
 		$color = in_array( $params['button-color'], self::VALID_COLORS, true )
 			? $params['button-color']
 			: 'blue';
-		$caption = $params['caption'] ?: '';
-		$buttonText = $params['button-text'] ?: 'You mean I can donate to this thing!!!';
+		$caption = $params['caption'] !== '' ? $params['caption'] : 'You mean I can donate to this thing!!!';
+		$buttonText = $params['button-text'] ?: wfMessage( 'fundraisingwidgets-button-donate' )->text();
 		$buttonLink = $params['button-link'] ?: 'https://donate.wikimedia.org';
 
 		$imageUrl = self::IMAGE_URLS[$image] ?? self::IMAGE_URLS['snow-leopard'];
@@ -122,7 +122,7 @@ class FundraisingImage {
 			'size' => 'medium',
 			'button-position' => 'bottom-right',
 			'button-color' => 'blue',
-			'caption' => '',
+			'caption' => 'You mean I can donate to this thing!!!',
 			'button-text' => '',
 			'button-link' => '',
 		];
