@@ -213,12 +213,12 @@
 		 * Render an image widget
 		 */
 		renderImage: function ( container ) {
-			var image = container.getAttribute( 'data-image' ) || 'landscape';
+			var image = container.getAttribute( 'data-image' ) || 'snow-leopard';
 			var size = container.getAttribute( 'data-size' ) || 'medium';
 			var position = container.getAttribute( 'data-button-position' ) || 'bottom-right';
 			var color = container.getAttribute( 'data-button-color' ) || 'blue';
 			var caption = container.getAttribute( 'data-caption' ) || '';
-			var buttonText = container.getAttribute( 'data-button-text' ) || 'Donate';
+			var buttonText = container.getAttribute( 'data-button-text' ) || 'You mean I can donate to this thing!!!';
 			var buttonLink = container.getAttribute( 'data-button-link' ) || 'https://donate.wikimedia.org';
 
 			var validPositions = [ 'top-left', 'top-right', 'bottom-left', 'bottom-right' ];
@@ -241,7 +241,7 @@
 				'regal-cat': 'https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_November_2010-1a.jpg'
 			};
 
-			var imageUrl = imageUrls[ image ] || imageUrls.landscape;
+			var imageUrl = imageUrls[ image ] || imageUrls[ 'snow-leopard' ];
 			var hasCaption = caption.length > 0;
 
 			var widget = document.createElement( 'div' );

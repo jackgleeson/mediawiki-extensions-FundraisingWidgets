@@ -272,7 +272,7 @@
 			var size = sizeSelect.value;
 			var position = positionSelect.value;
 			var caption = captionInput.value;
-			var imageUrl = imageUrls[ image ] || imageUrls.landscape;
+			var imageUrl = imageUrls[ image ] || imageUrls[ 'snow-leopard' ];
 
 			var hasCaption = caption.length > 0;
 			var widgetClass = 'frw-image-widget frw-image-widget--' + escapeHtml( size );
@@ -291,12 +291,12 @@
 				captionBarHtml = '<div class="frw-image-caption-bar">' +
 					'<p class="frw-image-caption">' + escapeHtml( caption ) + '</p>' +
 					'<a href="https://donate.wikimedia.org" class="' + buttonClass + '" role="button">' +
-					'<span class="frw-button-text">Donate</span>' +
+					'<span class="frw-button-text">You mean I can donate to this thing!!!</span>' +
 					'</a>' +
 					'</div>';
 			} else {
 				buttonHtml = '<a href="https://donate.wikimedia.org" class="' + buttonClass + '" role="button">' +
-					'<span class="frw-button-text">Donate</span>' +
+					'<span class="frw-button-text">You mean I can donate to this thing!!!</span>' +
 					'</a>';
 			}
 

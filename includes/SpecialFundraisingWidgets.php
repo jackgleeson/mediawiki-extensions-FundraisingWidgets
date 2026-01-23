@@ -240,10 +240,10 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'<div class="frw-config-field">' .
 			'<label for="frw-image-bg">' . $this->msg( 'fundraisingwidgets-config-image' )->escaped() . '</label>' .
 			'<select id="frw-image-bg" class="frw-config-input">' .
-			'<option value="landscape" selected>' . $this->msg( 'fundraisingwidgets-image-landscape' )->escaped() . '</option>' .
+			'<option value="landscape">' . $this->msg( 'fundraisingwidgets-image-landscape' )->escaped() . '</option>' .
 			'<option value="eagle">' . $this->msg( 'fundraisingwidgets-image-eagle' )->escaped() . '</option>' .
 			'<option value="mountain">' . $this->msg( 'fundraisingwidgets-image-mountain' )->escaped() . '</option>' .
-			'<option value="snow-leopard">' . $this->msg( 'fundraisingwidgets-image-snow-leopard' )->escaped() . '</option>' .
+			'<option value="snow-leopard" selected>' . $this->msg( 'fundraisingwidgets-image-snow-leopard' )->escaped() . '</option>' .
 			'<option value="frog">' . $this->msg( 'fundraisingwidgets-image-frog' )->escaped() . '</option>' .
 			'<option value="cat-lizard">' . $this->msg( 'fundraisingwidgets-image-cat-lizard' )->escaped() . '</option>' .
 			'<option value="regal-cat">' . $this->msg( 'fundraisingwidgets-image-regal-cat' )->escaped() . '</option>' .
@@ -294,14 +294,14 @@ class SpecialFundraisingWidgets extends SpecialPage {
 		$out->addHTML( '</div>' );
 		// MediaWiki format
 		$out->addHTML( '<div class="frw-format-content frw-format-content--active" data-format="wikitext">' );
-		$out->addHTML( '<pre id="frw-image-code-wikitext" class="frw-code-output">{{#fundraising-image: image=landscape | size=medium | button-position=bottom-right | button-color=blue }}</pre>' );
+		$out->addHTML( '<pre id="frw-image-code-wikitext" class="frw-code-output">{{#fundraising-image: image=snow-leopard | size=medium | button-position=bottom-right | button-color=blue }}</pre>' );
 		$out->addHTML( '<button type="button" class="frw-copy-button" data-target="frw-image-code-wikitext">' .
 			$this->msg( 'fundraisingwidgets-special-copy' )->escaped() . '</button>' );
 		$out->addHTML( '</div>' );
 		// JavaScript format
 		$out->addHTML( '<div class="frw-format-content" data-format="javascript">' );
 		$out->addHTML( '<pre id="frw-image-code-js" class="frw-code-output">' . htmlspecialchars( '<script src="' . $this->getConfig()->get( 'Server' ) . $this->getConfig()->get( 'ExtensionAssetsPath' ) . '/FundraisingWidgets/resources/embed.js"></script>
-<div class="frw-embed" data-widget="image" data-image="landscape" data-size="medium" data-button-position="bottom-right" data-button-color="blue"></div>' ) . '</pre>' );
+<div class="frw-embed" data-widget="image" data-image="snow-leopard" data-size="medium" data-button-position="bottom-right" data-button-color="blue"></div>' ) . '</pre>' );
 		$out->addHTML( '<button type="button" class="frw-copy-button" data-target="frw-image-code-js">' .
 			$this->msg( 'fundraisingwidgets-special-copy' )->escaped() . '</button>' );
 		$out->addHTML( '</div>' );
@@ -319,12 +319,12 @@ class SpecialFundraisingWidgets extends SpecialPage {
 	}
 
 	private function renderImagePreview( $out ): void {
-		$imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/8/81/Parque_Eagle_River%2C_Anchorage%2C_Alaska%2C_Estados_Unidos%2C_2017-09-01%2C_DD_02.jpg';
+		$imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Snow_Leopard_Looking_Up.jpg';
 		$out->addHTML(
 			'<div class="frw-image-widget frw-image-widget--medium frw-image-widget--button-bottom-right" style="background-image: url(\'' . htmlspecialchars( $imageUrl ) . '\');">' .
 			'<div class="frw-image-overlay">' .
 			'<a href="https://donate.wikimedia.org" class="frw-donate-button frw-donate-button--medium frw-donate-button--blue" role="button">' .
-			'<span class="frw-button-text">Donate</span>' .
+			'<span class="frw-button-text">You mean I can donate to this thing!!!</span>' .
 			'</a>' .
 			'</div>' .
 			'</div>'

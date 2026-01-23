@@ -38,7 +38,7 @@ class FundraisingImage {
 
 		$image = in_array( $params['image'], self::VALID_IMAGES, true )
 			? $params['image']
-			: 'landscape';
+			: 'snow-leopard';
 		$size = in_array( $params['size'], self::VALID_SIZES, true )
 			? $params['size']
 			: 'medium';
@@ -49,10 +49,10 @@ class FundraisingImage {
 			? $params['button-color']
 			: 'blue';
 		$caption = $params['caption'] ?: '';
-		$buttonText = $params['button-text'] ?: wfMessage( 'fundraisingwidgets-button-donate' )->text();
+		$buttonText = $params['button-text'] ?: 'You mean I can donate to this thing!!!';
 		$buttonLink = $params['button-link'] ?: 'https://donate.wikimedia.org';
 
-		$imageUrl = self::IMAGE_URLS[$image] ?? self::IMAGE_URLS['landscape'];
+		$imageUrl = self::IMAGE_URLS[$image] ?? self::IMAGE_URLS['snow-leopard'];
 
 		$hasCaption = !empty( $caption );
 		$widgetClass = 'frw-image-widget frw-image-widget--' . htmlspecialchars( $size, ENT_QUOTES );
@@ -118,7 +118,7 @@ class FundraisingImage {
 	 */
 	private static function parseArgs( PPFrame $frame, array $args ): array {
 		$params = [
-			'image' => 'landscape',
+			'image' => 'snow-leopard',
 			'size' => 'medium',
 			'button-position' => 'bottom-right',
 			'button-color' => 'blue',
