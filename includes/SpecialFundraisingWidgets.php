@@ -156,10 +156,6 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'<input type="text" id="frw-banner-button-text" class="frw-config-input" value="Donate" placeholder="Donate">' .
 			'</div>' .
 			'<div class="frw-config-field">' .
-			'<label for="frw-banner-button-link">' . $this->msg( 'fundraisingwidgets-config-button-link' )->escaped() . '</label>' .
-			'<input type="text" id="frw-banner-button-link" class="frw-config-input" value="https://donate.wikimedia.org" placeholder="https://donate.wikimedia.org">' .
-			'</div>' .
-			'<div class="frw-config-field">' .
 			'<label for="frw-banner-logo">' . $this->msg( 'fundraisingwidgets-config-logo' )->escaped() . '</label>' .
 			'<select id="frw-banner-logo" class="frw-config-input">' .
 			'<option value="globe" selected>' . $this->msg( 'fundraisingwidgets-logo-globe' )->escaped() . '</option>' .
@@ -175,6 +171,10 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'<input type="checkbox" id="frw-banner-dismissible" checked>' .
 			' ' . $this->msg( 'fundraisingwidgets-config-dismissible' )->escaped() .
 			'</label>' .
+			'</div>' .
+			'<div class="frw-config-field frw-config-field--full">' .
+			'<label for="frw-banner-button-link">' . $this->msg( 'fundraisingwidgets-config-button-link' )->escaped() . '</label>' .
+			'<input type="text" id="frw-banner-button-link" class="frw-config-input" value="https://donate.wikimedia.org" placeholder="https://donate.wikimedia.org">' .
 			'</div>' .
 			'</div>'
 		);

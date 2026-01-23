@@ -61,12 +61,15 @@
 }
 
 .frw-showcase-section h2 {
-	margin: 0;
+	margin: -1px -1px 0 -1px;
 	padding: 20px 24px;
 	font-size: 1.25rem;
 	font-weight: 600;
-	color: var( --frw-color-text );
-	border-bottom: 1px solid #eee;
+	color: #202122;
+	background: #eaecf0;
+	border: 1px solid #c8ccd1;
+	border-bottom: 1px solid #c8ccd1;
+	border-radius: 16px 16px 0 0;
 }
 
 .frw-showcase-section h3 {
