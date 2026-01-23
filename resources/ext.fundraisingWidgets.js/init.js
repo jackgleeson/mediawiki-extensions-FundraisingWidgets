@@ -54,7 +54,7 @@
 			var seenIndices = [];
 			var clickCount = 0;
 			var donateAfter = parseInt( widget.dataset.donateAfter, 10 ) || 3;
-			var donateLink = widget.dataset.donateLink || 'https://donate.wikimedia.org';
+			var donateLink = widget.dataset.buttonLink || 'https://donate.wikimedia.org';
 
 			// Parse discoveries from data attribute
 			try {

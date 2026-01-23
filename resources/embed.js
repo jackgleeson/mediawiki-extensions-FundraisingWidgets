@@ -117,7 +117,7 @@
 			var size = container.getAttribute( 'data-size' ) || 'medium';
 			var text = container.getAttribute( 'data-text' ) || 'Support Wikipedia';
 			var color = container.getAttribute( 'data-color' ) || 'blue';
-			var link = container.getAttribute( 'data-link' ) || 'https://donate.wikimedia.org';
+			var link = container.getAttribute( 'data-button-link' ) || 'https://donate.wikimedia.org';
 
 			var button = document.createElement( 'a' );
 			button.href = link;
@@ -319,7 +319,7 @@
 			var theme = container.getAttribute( 'data-theme' ) || 'light';
 			var donateAfter = parseInt( container.getAttribute( 'data-donate-after' ), 10 ) || 3;
 			var buttonText = container.getAttribute( 'data-button-text' ) || 'Discover something new';
-			var donateLink = container.getAttribute( 'data-donate-link' ) || 'https://donate.wikimedia.org';
+			var donateLink = container.getAttribute( 'data-button-link' ) || 'https://donate.wikimedia.org';
 			var self = this;
 
 			// Curated interesting Wikipedia facts and articles

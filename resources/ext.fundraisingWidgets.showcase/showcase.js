@@ -47,6 +47,7 @@
 	function initButtonConfigurator() {
 		var sizeSelect = document.getElementById( 'frw-button-size' );
 		var textInput = document.getElementById( 'frw-button-text' );
+		var linkInput = document.getElementById( 'frw-button-link' );
 		var preview = document.getElementById( 'frw-button-preview' );
 		var codeOutputWikitext = document.getElementById( 'frw-button-code-wikitext' );
 		var codeOutputJs = document.getElementById( 'frw-button-code-js' );
@@ -61,19 +62,28 @@
 		function updateButtonPreview() {
 			var size = sizeSelect.value;
 			var text = textInput.value || 'Support Wikipedia';
+			var link = linkInput.value || 'https://donate.wikimedia.org';
 
-			preview.innerHTML = '<a href="https://donate.wikimedia.org" ' +
+			preview.innerHTML = '<a href="' + escapeHtml( link ) + '" ' +
 				'class="frw-donate-button frw-donate-button--' + escapeHtml( size ) + ' frw-donate-button--' + escapeHtml( currentColor ) + '" role="button">' +
 				'<span class="frw-button-text">' + escapeHtml( text ) + '</span>' +
 				'</a>';
 
 			// Update wikitext code output
-			var wikitextCode = '{{#fundraising-button: size=' + size + ' | text=' + text + ' | color=' + currentColor + ' }}';
+			var wikitextCode = '{{#fundraising-button: size=' + size + ' | text=' + text + ' | color=' + currentColor;
+			if ( link !== 'https://donate.wikimedia.org' ) {
+				wikitextCode += ' | button-link=' + link;
+			}
+			wikitextCode += ' }}';
 			codeOutputWikitext.textContent = wikitextCode;
 
 			// Update JavaScript code output
 			var jsCode = '<script src="' + serverUrl + extensionPath + '/resources/embed.js"></script>\n' +
-				'<div class="frw-embed" data-widget="button" data-size="' + size + '" data-text="' + text + '" data-color="' + currentColor + '"></div>';
+				'<div class="frw-embed" data-widget="button" data-size="' + size + '" data-text="' + text + '" data-color="' + currentColor + '"';
+			if ( link !== 'https://donate.wikimedia.org' ) {
+				jsCode += ' data-button-link="' + escapeAttr( link ) + '"';
+			}
+			jsCode += '></div>';
 			codeOutputJs.textContent = jsCode;
 		}
 
@@ -95,6 +105,7 @@
 
 		sizeSelect.addEventListener( 'change', updateButtonPreview );
 		textInput.addEventListener( 'input', updateButtonPreview );
+		linkInput.addEventListener( 'input', updateButtonPreview );
 
 		// Initial render
 		updateButtonPreview();
@@ -365,7 +376,7 @@
 		var themeSelect = document.getElementById( 'frw-rabbithole-theme' );
 		var donateAfterSelect = document.getElementById( 'frw-rabbithole-donate-after' );
 		var buttonTextInput = document.getElementById( 'frw-rabbithole-button-text' );
-		var donateLinkInput = document.getElementById( 'frw-rabbithole-donate-link' );
+		var buttonLinkInput = document.getElementById( 'frw-rabbithole-button-link' );
 		var preview = document.getElementById( 'frw-rabbithole-preview' );
 		var codeOutputWikitext = document.getElementById( 'frw-rabbithole-code-wikitext' );
 		var codeOutputJs = document.getElementById( 'frw-rabbithole-code-js' );
@@ -406,7 +417,7 @@
 			var theme = themeSelect.value;
 			var donateAfter = parseInt( donateAfterSelect.value, 10 ) || 3;
 			var buttonText = buttonTextInput.value || 'Discover something new';
-			var donateLink = donateLinkInput.value || 'https://donate.wikimedia.org';
+			var buttonLink = buttonLinkInput.value || 'https://donate.wikimedia.org';
 
 			preview.innerHTML = '<div class="frw-rabbit-hole frw-rabbit-hole--' + escapeHtml( theme ) + '">' +
 				'<div class="frw-rabbit-hole-content">' +
@@ -417,7 +428,7 @@
 				'<div class="frw-rabbit-hole-discovery frw-rabbit-hole-discovery--hidden"></div>' +
 				'<div class="frw-rabbit-hole-donate frw-rabbit-hole-donate--hidden">' +
 				'<p class="frw-rabbit-hole-donate-message">Enjoying the journey? Wikipedia is free, but not free to run. Help keep knowledge accessible for everyone.</p>' +
-				'<a href="' + escapeHtml( donateLink ) + '" class="frw-donate-button frw-donate-button--medium frw-donate-button--green" role="button">' +
+				'<a href="' + escapeHtml( buttonLink ) + '" class="frw-donate-button frw-donate-button--medium frw-donate-button--green" role="button">' +
 				'<span class="frw-button-text">Donate</span>' +
 				'</a>' +
 				'</div>' +
@@ -480,8 +491,8 @@
 			if ( buttonText !== 'Discover something new' ) {
 				wikitextCode += ' | button-text=' + buttonText;
 			}
-			if ( donateLink !== 'https://donate.wikimedia.org' ) {
-				wikitextCode += ' | donate-link=' + donateLink;
+			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
+				wikitextCode += ' | button-link=' + buttonLink;
 			}
 			wikitextCode += ' }}';
 			codeOutputWikitext.textContent = wikitextCode;
@@ -492,8 +503,8 @@
 			if ( buttonText !== 'Discover something new' ) {
 				jsCode += ' data-button-text="' + escapeAttr( buttonText ) + '"';
 			}
-			if ( donateLink !== 'https://donate.wikimedia.org' ) {
-				jsCode += ' data-donate-link="' + escapeAttr( donateLink ) + '"';
+			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
+				jsCode += ' data-button-link="' + escapeAttr( buttonLink ) + '"';
 			}
 			jsCode += '></div>';
 			codeOutputJs.textContent = jsCode;
@@ -502,7 +513,7 @@
 		themeSelect.addEventListener( 'change', updateRabbitHolePreview );
 		donateAfterSelect.addEventListener( 'change', updateRabbitHolePreview );
 		buttonTextInput.addEventListener( 'input', updateRabbitHolePreview );
-		donateLinkInput.addEventListener( 'input', updateRabbitHolePreview );
+		buttonLinkInput.addEventListener( 'input', updateRabbitHolePreview );
 
 		// Initial render
 		updateRabbitHolePreview();

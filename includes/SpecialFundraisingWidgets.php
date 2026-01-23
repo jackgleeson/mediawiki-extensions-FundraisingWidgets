@@ -78,6 +78,10 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'<option value="large">' . $this->msg( 'fundraisingwidgets-size-large' )->escaped() . '</option>' .
 			'</select>' .
 			'</div>' .
+			'<div class="frw-config-field">' .
+			'<label for="frw-button-link">' . $this->msg( 'fundraisingwidgets-config-button-link' )->escaped() . '</label>' .
+			'<input type="text" id="frw-button-link" class="frw-config-input" value="https://donate.wikimedia.org" placeholder="https://donate.wikimedia.org">' .
+			'</div>' .
 			'</div>'
 		);
 		$out->addHTML( '</div>' );
@@ -371,8 +375,8 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'<input type="text" id="frw-rabbithole-button-text" class="frw-config-input" value="" placeholder="Discover something new">' .
 			'</div>' .
 			'<div class="frw-config-field">' .
-			'<label for="frw-rabbithole-donate-link">' . $this->msg( 'fundraisingwidgets-config-donate-link' )->escaped() . '</label>' .
-			'<input type="text" id="frw-rabbithole-donate-link" class="frw-config-input" value="https://donate.wikimedia.org" placeholder="https://donate.wikimedia.org">' .
+			'<label for="frw-rabbithole-button-link">' . $this->msg( 'fundraisingwidgets-config-button-link' )->escaped() . '</label>' .
+			'<input type="text" id="frw-rabbithole-button-link" class="frw-config-input" value="https://donate.wikimedia.org" placeholder="https://donate.wikimedia.org">' .
 			'</div>' .
 			'</div>'
 		);

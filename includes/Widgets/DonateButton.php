@@ -33,7 +33,7 @@ class DonateButton {
 			: 'blue';
 
 		$text = $params['text'] ?: 'Support Wikipedia';
-		$link = $params['link'] ?: 'https://donate.wikimedia.org';
+		$link = $params['button-link'] ?: 'https://donate.wikimedia.org';
 		$showIcons = $params['icons'] === 'true';
 
 		$iconHtml = '';
@@ -68,7 +68,7 @@ class DonateButton {
 			'size' => 'medium',
 			'color' => 'blue',
 			'text' => '',
-			'link' => '',
+			'button-link' => '',
 			'icons' => 'false',
 		];
 

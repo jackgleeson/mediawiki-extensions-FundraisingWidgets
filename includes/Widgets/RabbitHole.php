@@ -94,13 +94,13 @@ class RabbitHole {
 			: 'light';
 		$donateAfter = max( 1, min( 10, (int)$params['donate-after'] ) );
 		$buttonText = $params['button-text'] ?: wfMessage( 'fundraisingwidgets-rabbithole-discover' )->text();
-		$donateLink = $params['donate-link'] ?: 'https://donate.wikimedia.org';
+		$donateLink = $params['button-link'] ?: 'https://donate.wikimedia.org';
 
 		// Encode discoveries as JSON for JavaScript
 		$discoveriesJson = htmlspecialchars( json_encode( self::DISCOVERIES ), ENT_QUOTES );
 
 		$html = sprintf(
-			'<div class="frw-rabbit-hole frw-rabbit-hole--%s" data-donate-after="%d" data-donate-link="%s" data-discoveries="%s">' .
+			'<div class="frw-rabbit-hole frw-rabbit-hole--%s" data-donate-after="%d" data-button-link="%s" data-discoveries="%s">' .
 			'<div class="frw-rabbit-hole-content">' .
 			'<div class="frw-rabbit-hole-intro">' .
 			'<h3 class="frw-rabbit-hole-title">%s</h3>' .
@@ -146,7 +146,7 @@ class RabbitHole {
 			'theme' => 'light',
 			'donate-after' => '3',
 			'button-text' => '',
-			'donate-link' => '',
+			'button-link' => '',
 		];
 
 		foreach ( $args as $arg ) {

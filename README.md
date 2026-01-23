@@ -35,7 +35,7 @@ A customizable donation button with multiple sizes and colors.
 - `size` - small, medium, large (default: medium)
 - `text` - Button text (default: "Support Wikipedia")
 - `color` - blue, purple, green, red, yellow (default: blue)
-- `link` - Destination URL (default: https://donate.wikimedia.org)
+- `button-link` - Destination URL (default: https://donate.wikimedia.org)
 - `icons` - Show payment icons (true/false, default: false)
 
 ### Fundraising Banner
@@ -82,7 +82,7 @@ An interactive widget that displays random Wikipedia facts, with a donate prompt
 - `theme` - light, dark
 - `donate-after` - Number of discoveries before showing donate prompt (default: 3)
 - `button-text` - Initial button text (default: "Discover something new")
-- `donate-link` - Donation URL (default: https://donate.wikimedia.org)
+- `button-link` - Donation URL (default: https://donate.wikimedia.org)
 
 ## External Embedding (JavaScript)
 
