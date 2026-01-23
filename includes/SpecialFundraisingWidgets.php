@@ -32,7 +32,17 @@ class SpecialFundraisingWidgets extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addHTML(
 			'<div class="frw-showcase-intro">' .
-			'<p>' . $this->msg( 'fundraisingwidgets-special-intro' )->escaped() . '</p>' .
+			'<p class="frw-showcase-intro-lead">' . $this->msg( 'fundraisingwidgets-special-intro' )->escaped() . '</p>' .
+			'<div class="frw-showcase-intro-options">' .
+			'<div class="frw-showcase-intro-option">' .
+			'<h3>' . $this->msg( 'fundraisingwidgets-special-intro-mediawiki-title' )->escaped() . '</h3>' .
+			'<p>' . $this->msg( 'fundraisingwidgets-special-intro-mediawiki-desc' )->escaped() . '</p>' .
+			'</div>' .
+			'<div class="frw-showcase-intro-option">' .
+			'<h3>' . $this->msg( 'fundraisingwidgets-special-intro-js-title' )->escaped() . '</h3>' .
+			'<p>' . $this->msg( 'fundraisingwidgets-special-intro-js-desc' )->escaped() . '</p>' .
+			'</div>' .
+			'</div>' .
 			'</div>'
 		);
 	}
@@ -78,7 +88,7 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'<option value="large">' . $this->msg( 'fundraisingwidgets-size-large' )->escaped() . '</option>' .
 			'</select>' .
 			'</div>' .
-			'<div class="frw-config-field">' .
+			'<div class="frw-config-field frw-config-field--full">' .
 			'<label for="frw-button-link">' . $this->msg( 'fundraisingwidgets-config-button-link' )->escaped() . '</label>' .
 			'<input type="text" id="frw-button-link" class="frw-config-input" value="https://donate.wikimedia.org" placeholder="https://donate.wikimedia.org">' .
 			'</div>' .
@@ -283,6 +293,10 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'<div class="frw-config-field frw-config-field--full">' .
 			'<label for="frw-image-caption">' . $this->msg( 'fundraisingwidgets-config-caption' )->escaped() . '</label>' .
 			'<input type="text" id="frw-image-caption" class="frw-config-input" value="You mean I can donate to this thing!!!" placeholder="Caption text (leave empty to show button on image)">' .
+			'</div>' .
+			'<div class="frw-config-field">' .
+			'<label for="frw-image-button-link">' . $this->msg( 'fundraisingwidgets-config-button-link' )->escaped() . '</label>' .
+			'<input type="text" id="frw-image-button-link" class="frw-config-input" value="https://donate.wikimedia.org" placeholder="https://donate.wikimedia.org">' .
 			'</div>' .
 			'</div>'
 		);

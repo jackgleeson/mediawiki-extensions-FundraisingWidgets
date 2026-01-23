@@ -4,16 +4,44 @@
 
 .frw-showcase-intro {
 	margin-bottom: 32px;
-	padding: 20px 24px;
-	background: linear-gradient( 135deg, #667eea 0%, #764ba2 100% );
-	color: #fff;
+	padding: 24px;
+	background: #eaecf0;
+	border: 1px solid #c8ccd1;
 	border-radius: 12px;
 }
 
-.frw-showcase-intro p {
-	margin: 0;
+.frw-showcase-intro-lead {
+	margin: 0 0 20px 0;
 	font-size: 1.1rem;
 	line-height: 1.6;
+	color: #202122;
+}
+
+.frw-showcase-intro-options {
+	display: grid;
+	grid-template-columns: repeat( 2, 1fr );
+	gap: 16px;
+}
+
+.frw-showcase-intro-option {
+	padding: 16px;
+	background: #fff;
+	border: 1px solid #eaecf0;
+	border-radius: 8px;
+}
+
+.frw-showcase-intro-option h3 {
+	margin: 0 0 8px 0;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: #202122;
+}
+
+.frw-showcase-intro-option p {
+	margin: 0;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: #54595d;
 }
 
 /* Widget grid layout */
@@ -400,6 +428,10 @@ textarea.frw-config-input {
 }
 
 @media ( max-width: 768px ) {
+	.frw-showcase-intro-options {
+		grid-template-columns: 1fr;
+	}
+
 	.frw-showcase-section {
 		border-radius: 12px;
 		margin: 0 -8px;

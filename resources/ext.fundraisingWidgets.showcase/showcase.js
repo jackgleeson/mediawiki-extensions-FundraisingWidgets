@@ -62,7 +62,7 @@
 		function updateButtonPreview() {
 			var size = sizeSelect.value;
 			var text = textInput.value || 'Support Wikipedia';
-			var link = linkInput.value || 'https://donate.wikimedia.org';
+			var link = ( linkInput && linkInput.value ) || 'https://donate.wikimedia.org';
 
 			preview.innerHTML = '<a href="' + escapeHtml( link ) + '" ' +
 				'class="frw-donate-button frw-donate-button--' + escapeHtml( size ) + ' frw-donate-button--' + escapeHtml( currentColor ) + '" role="button">' +
@@ -171,7 +171,7 @@
 		function updateBannerPreview() {
 			var message = messageInput.value || 'If Wikipedia has given you useful knowledge this year, please give back. There are no small contributions: every edit counts, every donation counts.';
 			var buttonText = buttonTextInput.value || 'Donate';
-			var buttonLink = buttonLinkInput.value || 'https://donate.wikimedia.org';
+			var buttonLink = ( buttonLinkInput && buttonLinkInput.value ) || 'https://donate.wikimedia.org';
 			var dismissible = dismissibleCheckbox.checked;
 			var logoType = logoSelect.value;
 
@@ -257,6 +257,7 @@
 		var sizeSelect = document.getElementById( 'frw-image-size' );
 		var positionSelect = document.getElementById( 'frw-image-position' );
 		var captionInput = document.getElementById( 'frw-image-caption' );
+		var buttonLinkInput = document.getElementById( 'frw-image-button-link' );
 		var colorPicker = document.getElementById( 'frw-image-colors' );
 		var preview = document.getElementById( 'frw-image-preview' );
 		var codeOutputWikitext = document.getElementById( 'frw-image-code-wikitext' );
@@ -283,6 +284,7 @@
 			var size = sizeSelect.value;
 			var position = positionSelect.value;
 			var caption = captionInput.value;
+			var buttonLink = ( buttonLinkInput && buttonLinkInput.value ) || 'https://donate.wikimedia.org';
 			var imageUrl = imageUrls[ image ] || imageUrls[ 'snow-leopard' ];
 
 			var hasCaption = caption.length > 0;
@@ -301,12 +303,12 @@
 			if ( hasCaption ) {
 				captionBarHtml = '<div class="frw-image-caption-bar">' +
 					'<p class="frw-image-caption">' + escapeHtml( caption ) + '</p>' +
-					'<a href="https://donate.wikimedia.org" class="' + buttonClass + '" role="button">' +
+					'<a href="' + escapeHtml( buttonLink ) + '" class="' + buttonClass + '" role="button">' +
 					'<span class="frw-button-text">Donate</span>' +
 					'</a>' +
 					'</div>';
 			} else {
-				buttonHtml = '<a href="https://donate.wikimedia.org" class="' + buttonClass + '" role="button">' +
+				buttonHtml = '<a href="' + escapeHtml( buttonLink ) + '" class="' + buttonClass + '" role="button">' +
 					'<span class="frw-button-text">Donate</span>' +
 					'</a>';
 			}
@@ -328,6 +330,9 @@
 			if ( caption ) {
 				wikitextCode += ' | caption=' + caption;
 			}
+			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
+				wikitextCode += ' | button-link=' + buttonLink;
+			}
 			wikitextCode += ' }}';
 			codeOutputWikitext.textContent = wikitextCode;
 
@@ -340,6 +345,9 @@
 			jsCode += ' data-button-color="' + currentColor + '"';
 			if ( caption ) {
 				jsCode += ' data-caption="' + escapeAttr( caption ) + '"';
+			}
+			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
+				jsCode += ' data-button-link="' + escapeAttr( buttonLink ) + '"';
 			}
 			jsCode += '></div>';
 			codeOutputJs.textContent = jsCode;
@@ -364,6 +372,7 @@
 		sizeSelect.addEventListener( 'change', updateImagePreview );
 		positionSelect.addEventListener( 'change', updateImagePreview );
 		captionInput.addEventListener( 'input', updateImagePreview );
+		buttonLinkInput.addEventListener( 'input', updateImagePreview );
 
 		// Initial render
 		updateImagePreview();
@@ -417,7 +426,7 @@
 			var theme = themeSelect.value;
 			var donateAfter = parseInt( donateAfterSelect.value, 10 ) || 3;
 			var buttonText = buttonTextInput.value || 'Discover something new';
-			var buttonLink = buttonLinkInput.value || 'https://donate.wikimedia.org';
+			var buttonLink = ( buttonLinkInput && buttonLinkInput.value ) || 'https://donate.wikimedia.org';
 
 			preview.innerHTML = '<div class="frw-rabbit-hole frw-rabbit-hole--' + escapeHtml( theme ) + '">' +
 				'<div class="frw-rabbit-hole-content">' +
