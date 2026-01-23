@@ -383,6 +383,106 @@
 					title: 'Human and Chimpanzee DNA',
 					fact: 'Humans and chimpanzees share approximately 98-99% of their DNA sequence. Yet that tiny 1-2% difference accounts for our bipedal stance, language ability, and complex technology.',
 					url: 'https://en.wikipedia.org/wiki/Chimpanzee'
+				},
+				{
+					title: 'The Dancing Plague of 1518',
+					fact: 'In July 1518, hundreds of people in Strasbourg danced uncontrollably for days without rest. Some collapsed from exhaustion, strokes, or heart attacks. The cause remains a mystery to this day.',
+					url: 'https://en.wikipedia.org/wiki/Dancing_plague_of_1518'
+				},
+				{
+					title: 'Mantis Shrimp Vision',
+					fact: 'Mantis shrimp have 16 types of color receptors compared to humans\' three. They can see ultraviolet light, polarized light, and have the most complex eyes in the animal kingdom.',
+					url: 'https://en.wikipedia.org/wiki/Mantis_shrimp'
+				},
+				{
+					title: 'Lake Baikal',
+					fact: 'Lake Baikal in Siberia contains about 22% of the world\'s fresh surface water—more than all the North American Great Lakes combined. It\'s also the world\'s oldest lake at 25 million years.',
+					url: 'https://en.wikipedia.org/wiki/Lake_Baikal'
+				},
+				{
+					title: 'Immortal Jellyfish',
+					fact: 'Turritopsis dohrnii can revert to its juvenile polyp stage after reaching maturity, essentially restarting its life cycle. It\'s the only known animal capable of complete biological immortality.',
+					url: 'https://en.wikipedia.org/wiki/Turritopsis_dohrnii'
+				},
+				{
+					title: 'The Library of Alexandria',
+					fact: 'The ancient Library of Alexandria was one of the largest libraries in the ancient world, possibly holding 400,000 scrolls. Its destruction over centuries represents one of history\'s greatest losses of knowledge.',
+					url: 'https://en.wikipedia.org/wiki/Library_of_Alexandria'
+				},
+				{
+					title: 'Hippos Can\'t Swim',
+					fact: 'Despite spending most of their time in water, hippos cannot swim or float. Their bones are too dense. Instead, they walk or bounce along the bottom of rivers and lakes.',
+					url: 'https://en.wikipedia.org/wiki/Hippopotamus'
+				},
+				{
+					title: 'Diamond Rain on Saturn',
+					fact: 'On Saturn and Jupiter, atmospheric pressure is so intense that it may crush carbon atoms into diamonds. Scientists believe it literally rains diamonds in their atmospheres.',
+					url: 'https://en.wikipedia.org/wiki/Saturn'
+				},
+				{
+					title: 'The Antikythera Mechanism',
+					fact: 'This 2,000-year-old Greek device is considered the world\'s first analog computer. It predicted astronomical positions and eclipses decades in advance using a complex system of gears.',
+					url: 'https://en.wikipedia.org/wiki/Antikythera_mechanism'
+				},
+				{
+					title: 'Crows Remember Faces',
+					fact: 'Crows can recognize and remember human faces for years. They communicate threats to other crows and can hold grudges against people who have wronged them.',
+					url: 'https://en.wikipedia.org/wiki/Crow'
+				},
+				{
+					title: 'Neutron Star Density',
+					fact: 'A teaspoon of neutron star material would weigh about 6 billion tons—roughly the weight of Mount Everest. Neutron stars are the collapsed cores of massive supergiant stars.',
+					url: 'https://en.wikipedia.org/wiki/Neutron_star'
+				},
+				{
+					title: 'The Wow! Signal',
+					fact: 'In 1977, a radio telescope detected a powerful 72-second signal from deep space. Astronomer Jerry Ehman circled it and wrote "Wow!" on the printout. Its origin remains unexplained.',
+					url: 'https://en.wikipedia.org/wiki/Wow!_signal'
+				},
+				{
+					title: 'Trees Communicate Underground',
+					fact: 'Trees share nutrients and information through underground fungal networks called mycorrhizal networks. Scientists call this the "Wood Wide Web"—older trees even nurture their seedlings.',
+					url: 'https://en.wikipedia.org/wiki/Mycorrhizal_network'
+				},
+				{
+					title: 'Vesuvius and Pompeii',
+					fact: 'When Mount Vesuvius erupted in 79 AD, it released 100,000 times the thermal energy of the Hiroshima bomb. The city of Pompeii was buried under 4-6 meters of volcanic ash and pumice.',
+					url: 'https://en.wikipedia.org/wiki/Eruption_of_Mount_Vesuvius_in_79_AD'
+				},
+				{
+					title: 'Slime Mold Intelligence',
+					fact: 'Despite having no brain or nervous system, slime molds can solve mazes, learn patterns, and find the most efficient routes between food sources. They\'ve even recreated Tokyo\'s rail network.',
+					url: 'https://en.wikipedia.org/wiki/Slime_mold'
+				},
+				{
+					title: 'The Fermi Paradox',
+					fact: 'Given the high probability of extraterrestrial life in the universe, why haven\'t we detected any signs of it? This contradiction between expectation and reality puzzles scientists to this day.',
+					url: 'https://en.wikipedia.org/wiki/Fermi_paradox'
+				},
+				{
+					title: 'Lightning Creates Glass',
+					fact: 'When lightning strikes sand, it can fuse the grains into hollow glass tubes called fulgurites. These structures can extend several meters into the ground and preserve the lightning\'s path.',
+					url: 'https://en.wikipedia.org/wiki/Fulgurite'
+				},
+				{
+					title: 'The Overview Effect',
+					fact: 'Astronauts often experience a profound cognitive shift when viewing Earth from space. This "overview effect" creates feelings of awe and a new perspective on the fragility of our planet.',
+					url: 'https://en.wikipedia.org/wiki/Overview_effect'
+				},
+				{
+					title: 'Elephant Memory',
+					fact: 'Elephants can remember locations, individuals, and events for decades. They\'ve been observed visiting the bones of deceased family members years after death, gently touching them with their trunks.',
+					url: 'https://en.wikipedia.org/wiki/Elephant_cognition'
+				},
+				{
+					title: 'The Deep Sea Gigantism',
+					fact: 'Many deep-sea creatures grow to enormous sizes compared to their shallow-water relatives. Giant squid, giant isopods, and Japanese spider crabs are examples of this mysterious phenomenon.',
+					url: 'https://en.wikipedia.org/wiki/Deep-sea_gigantism'
+				},
+				{
+					title: 'Human-Made Mass',
+					fact: 'In 2020, the total mass of human-made objects exceeded the mass of all living things on Earth for the first time. Buildings, roads, and machines now outweigh all animals and plants combined.',
+					url: 'https://en.wikipedia.org/wiki/Anthropogenic_mass'
 				}
 			];
 
