@@ -18,26 +18,22 @@ class FundraisingWidgetsHooks {
 	public static function onParserFirstCallInit( Parser $parser ): void {
 		$parser->setFunctionHook(
 			'fundraising-button',
-			[ DonateButton::class, 'render' ],
-			Parser::SFH_OBJECT_ARGS
+			[ DonateButton::class, 'render' ]
 		);
 
 		$parser->setFunctionHook(
 			'fundraising-banner',
-			[ FundraisingBanner::class, 'render' ],
-			Parser::SFH_OBJECT_ARGS
+			[ FundraisingBanner::class, 'render' ]
 		);
 
 		$parser->setFunctionHook(
 			'fundraising-image',
-			[ FundraisingImage::class, 'render' ],
-			Parser::SFH_OBJECT_ARGS
+			[ FundraisingImage::class, 'render' ]
 		);
 
 		$parser->setFunctionHook(
 			'fundraising-rabbithole',
-			[ RabbitHole::class, 'render' ],
-			Parser::SFH_OBJECT_ARGS
+			[ RabbitHole::class, 'render' ]
 		);
 	}
 }

@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\FundraisingWidgets\Widgets;
 
 use Parser;
-use PPFrame;
 
 class FundraisingImage {
 
@@ -26,15 +25,14 @@ class FundraisingImage {
 	 * Render the fundraising image widget
 	 *
 	 * @param Parser $parser
-	 * @param PPFrame $frame
-	 * @param array $args
+	 * @param mixed ...$args
 	 * @return array
 	 */
-	public static function render( Parser $parser, PPFrame $frame, array $args ): array {
+	public static function render( Parser $parser, ...$args ): array {
 		$parser->getOutput()->addModules( [ 'ext.fundraisingWidgets.js' ] );
 		$parser->getOutput()->addModuleStyles( [ 'ext.fundraisingWidgets' ] );
 
-		$params = self::parseArgs( $frame, $args );
+		$params = self::parseArgs( $args );
 
 		$image = in_array( $params['image'], self::VALID_IMAGES, true )
 			? $params['image']
@@ -112,11 +110,10 @@ class FundraisingImage {
 	/**
 	 * Parse parser function arguments into key-value pairs
 	 *
-	 * @param PPFrame $frame
 	 * @param array $args
 	 * @return array
 	 */
-	private static function parseArgs( PPFrame $frame, array $args ): array {
+	private static function parseArgs( array $args ): array {
 		$params = [
 			'image' => 'snow-leopard',
 			'size' => 'medium',
@@ -128,8 +125,7 @@ class FundraisingImage {
 		];
 
 		foreach ( $args as $arg ) {
-			$expanded = $frame->expand( $arg );
-			$parts = explode( '=', $expanded, 2 );
+			$parts = explode( '=', $arg, 2 );
 			if ( count( $parts ) === 2 ) {
 				$key = trim( $parts[0] );
 				$value = trim( $parts[1] );

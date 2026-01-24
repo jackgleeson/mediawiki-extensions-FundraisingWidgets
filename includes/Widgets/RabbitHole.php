@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\FundraisingWidgets\Widgets;
 
 use Parser;
-use PPFrame;
 
 class RabbitHole {
 
@@ -179,15 +178,14 @@ class RabbitHole {
 	 * Render the rabbit hole widget
 	 *
 	 * @param Parser $parser
-	 * @param PPFrame $frame
-	 * @param array $args
+	 * @param mixed ...$args
 	 * @return array
 	 */
-	public static function render( Parser $parser, PPFrame $frame, array $args ): array {
+	public static function render( Parser $parser, ...$args ): array {
 		$parser->getOutput()->addModules( [ 'ext.fundraisingWidgets.js' ] );
 		$parser->getOutput()->addModuleStyles( [ 'ext.fundraisingWidgets' ] );
 
-		$params = self::parseArgs( $frame, $args );
+		$params = self::parseArgs( $args );
 
 		$theme = in_array( $params['theme'], self::VALID_THEMES, true )
 			? $params['theme']
@@ -237,11 +235,10 @@ class RabbitHole {
 	/**
 	 * Parse parser function arguments into key-value pairs
 	 *
-	 * @param PPFrame $frame
 	 * @param array $args
 	 * @return array
 	 */
-	private static function parseArgs( PPFrame $frame, array $args ): array {
+	private static function parseArgs( array $args ): array {
 		$params = [
 			'theme' => 'light',
 			'donate-after' => '3',
@@ -250,8 +247,7 @@ class RabbitHole {
 		];
 
 		foreach ( $args as $arg ) {
-			$expanded = $frame->expand( $arg );
-			$parts = explode( '=', $expanded, 2 );
+			$parts = explode( '=', $arg, 2 );
 			if ( count( $parts ) === 2 ) {
 				$key = trim( $parts[0] );
 				$value = trim( $parts[1] );
