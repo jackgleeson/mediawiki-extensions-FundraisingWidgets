@@ -208,7 +208,7 @@ class RabbitHole {
 			'<div class="frw-rabbit-hole-discovery frw-rabbit-hole-discovery--hidden"></div>' .
 			'<div class="frw-rabbit-hole-donate frw-rabbit-hole-donate--hidden">' .
 			'<p class="frw-rabbit-hole-donate-message">%s</p>' .
-			'<a href="%s" class="frw-donate-button frw-donate-button--medium frw-donate-button--green" role="button">' .
+			'<a href="%s" class="frw-donate-button frw-donate-button--medium frw-donate-button--green" role="button" target="_blank" rel="noopener">' .
 			'<span class="frw-button-text">%s</span>' .
 			'</a>' .
 			'</div>' .
