@@ -36,7 +36,6 @@ A customizable donation button with multiple sizes and colors.
 - `text` - Button text (default: "Support Wikipedia")
 - `color` - blue, purple, green, red, yellow (default: blue)
 - `button-link` - Destination URL (default: https://donate.wikimedia.org)
-- `icons` - Show payment icons (true/false, default: false)
 
 ### Fundraising Banner
 

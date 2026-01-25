@@ -33,22 +33,12 @@ class DonateButton {
 
 		$text = $params['text'] ?: 'Support Wikipedia';
 		$link = self::sanitizeUrl( $params['button-link'] );
-		$showIcons = $params['icons'] === 'true';
-
-		$iconHtml = '';
-		if ( $showIcons ) {
-			$iconHtml = '<span class="frw-button-icons">' .
-				'<span class="frw-icon frw-icon-card"></span>' .
-				'<span class="frw-icon frw-icon-paypal"></span>' .
-				'</span>';
-		}
 
 		$html = sprintf(
-			'<a href="%s" class="frw-donate-button frw-donate-button--%s frw-donate-button--%s" role="button">%s<span class="frw-button-text">%s</span></a>',
+			'<a href="%s" class="frw-donate-button frw-donate-button--%s frw-donate-button--%s" role="button"><span class="frw-button-text">%s</span></a>',
 			htmlspecialchars( $link, ENT_QUOTES ),
 			htmlspecialchars( $size, ENT_QUOTES ),
 			htmlspecialchars( $color, ENT_QUOTES ),
-			$iconHtml,
 			htmlspecialchars( $text, ENT_QUOTES )
 		);
 
@@ -67,7 +57,6 @@ class DonateButton {
 			'color' => 'blue',
 			'text' => '',
 			'button-link' => '',
-			'icons' => 'false',
 		];
 
 		foreach ( $args as $arg ) {
