@@ -89,7 +89,7 @@
 			var link = sanitiseUrl( linkInput && linkInput.value );
 
 			preview.innerHTML = '<a href="' + escapeHtml( link ) + '" ' +
-				'class="frw-donate-button frw-donate-button--' + escapeHtml( size ) + ' frw-donate-button--' + escapeHtml( currentColor ) + '" role="button">' +
+				'class="frw-donate-button frw-donate-button--' + escapeHtml( size ) + ' frw-donate-button--' + escapeHtml( currentColor ) + '" role="button" target="_blank" rel="noopener">' +
 				'<span class="frw-button-text">' + escapeHtml( text ) + '</span>' +
 				'</a>';
 
@@ -213,7 +213,7 @@
 				logoHtml +
 				'<div class="frw-banner-content">' +
 				'<p class="frw-banner-message">' + escapeHtml( message ) + '</p>' +
-				'<a href="' + escapeHtml( buttonLink ) + '" class="frw-donate-button frw-donate-button--medium" role="button">' +
+				'<a href="' + escapeHtml( buttonLink ) + '" class="frw-donate-button frw-donate-button--medium" role="button" target="_blank" rel="noopener">' +
 				'<span class="frw-button-text">' + escapeHtml( buttonText ) + '</span>' +
 				'</a>' +
 				'</div>' +
@@ -327,12 +327,12 @@
 			if ( hasCaption ) {
 				captionBarHtml = '<div class="frw-image-caption-bar">' +
 					'<p class="frw-image-caption">' + escapeHtml( caption ) + '</p>' +
-					'<a href="' + escapeHtml( buttonLink ) + '" class="' + buttonClass + '" role="button">' +
+					'<a href="' + escapeHtml( buttonLink ) + '" class="' + buttonClass + '" role="button" target="_blank" rel="noopener">' +
 					'<span class="frw-button-text">Donate</span>' +
 					'</a>' +
 					'</div>';
 			} else {
-				buttonHtml = '<a href="' + escapeHtml( buttonLink ) + '" class="' + buttonClass + '" role="button">' +
+				buttonHtml = '<a href="' + escapeHtml( buttonLink ) + '" class="' + buttonClass + '" role="button" target="_blank" rel="noopener">' +
 					'<span class="frw-button-text">Donate</span>' +
 					'</a>';
 			}
@@ -473,7 +473,7 @@
 				'<div class="frw-rabbit-hole-discovery frw-rabbit-hole-discovery--hidden"></div>' +
 				'<div class="frw-rabbit-hole-donate frw-rabbit-hole-donate--hidden">' +
 				'<p class="frw-rabbit-hole-donate-message">Enjoying the journey? Wikipedia is free, but not free to run. Help keep knowledge accessible for everyone.</p>' +
-				'<a href="' + escapeHtml( buttonLink ) + '" class="frw-donate-button frw-donate-button--medium frw-donate-button--green" role="button">' +
+				'<a href="' + escapeHtml( buttonLink ) + '" class="frw-donate-button frw-donate-button--medium frw-donate-button--green" role="button" target="_blank" rel="noopener">' +
 				'<span class="frw-button-text">Donate</span>' +
 				'</a>' +
 				'</div>' +
