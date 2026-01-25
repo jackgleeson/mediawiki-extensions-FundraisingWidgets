@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\FundraisingWidgets\Widgets;
 use Parser;
 
 class DonateButton {
+	use UrlValidator;
 
 	private const VALID_SIZES = [ 'small', 'medium', 'large' ];
 	private const VALID_COLORS = [ 'blue', 'purple', 'green', 'red', 'yellow' ];
@@ -31,7 +32,7 @@ class DonateButton {
 			: 'blue';
 
 		$text = $params['text'] ?: 'Support Wikipedia';
-		$link = $params['button-link'] ?: 'https://donate.wikimedia.org';
+		$link = self::sanitizeUrl( $params['button-link'] );
 		$showIcons = $params['icons'] === 'true';
 
 		$iconHtml = '';

@@ -19,6 +19,12 @@
 		// CSS loaded flag
 		cssLoaded: false,
 
+		// Default donate URL
+		defaultDonateUrl: 'https://donate.wikimedia.org',
+
+		// Allowed URL protocols
+		allowedProtocols: [ 'https:', 'http:' ],
+
 		// Wikimedia Commons image URLs for external embedding
 		commonsImages: {
 			globe: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wikipedia-logo-v2.svg',
@@ -117,7 +123,7 @@
 			var size = container.getAttribute( 'data-size' ) || 'medium';
 			var text = container.getAttribute( 'data-text' ) || 'Support Wikipedia';
 			var color = container.getAttribute( 'data-color' ) || 'blue';
-			var link = container.getAttribute( 'data-button-link' ) || 'https://donate.wikimedia.org';
+			var link = this.sanitiseURL( container.getAttribute( 'data-button-link' ) );
 
 			var button = document.createElement( 'a' );
 			button.href = link;
@@ -138,7 +144,7 @@
 		renderBanner: function ( container ) {
 			var message = container.getAttribute( 'data-message' ) || 'If Wikipedia has given you useful knowledge this year, please give back.';
 			var buttonText = container.getAttribute( 'data-button-text' ) || 'Donate';
-			var buttonLink = container.getAttribute( 'data-button-link' ) || 'https://donate.wikimedia.org';
+			var buttonLink = this.sanitiseURL( container.getAttribute( 'data-button-link' ) );
 			var logo = container.getAttribute( 'data-logo' ) || 'globe';
 			var dismissible = container.getAttribute( 'data-dismissible' ) === 'true';
 
@@ -229,7 +235,7 @@
 				caption = 'You mean I can donate to this thing!!!';
 			}
 			var buttonText = container.getAttribute( 'data-button-text' ) || 'Donate';
-			var buttonLink = container.getAttribute( 'data-button-link' ) || 'https://donate.wikimedia.org';
+			var buttonLink = this.sanitiseURL( container.getAttribute( 'data-button-link' ) );
 
 			var validPositions = [ 'top-left', 'top-right', 'bottom-left', 'bottom-right' ];
 			var validColors = [ 'blue', 'purple', 'green', 'red', 'yellow' ];
@@ -319,7 +325,7 @@
 			var theme = container.getAttribute( 'data-theme' ) || 'light';
 			var donateAfter = parseInt( container.getAttribute( 'data-donate-after' ), 10 ) || 3;
 			var buttonText = container.getAttribute( 'data-button-text' ) || 'Discover something new';
-			var donateLink = container.getAttribute( 'data-button-link' ) || 'https://donate.wikimedia.org';
+			var donateLink = this.sanitiseURL( container.getAttribute( 'data-button-link' ) );
 			var self = this;
 
 			// Curated interesting Wikipedia facts and articles
@@ -629,7 +635,32 @@
 			var div = document.createElement( 'div' );
 			div.textContent = text;
 			return div.innerHTML;
+		},
+
+		/**
+		 * Sanitise the URL
+		 *
+		 * @param {string} url The URL to sanitise
+		 * @return {string} A safe URL
+		 */
+		sanitiseURL: function ( url ) {
+			if( !url || url === '' ) {
+				return this.defaultDonateUrl;
+			}
+
+			// Create an anchor element to parse the URL
+			var parser = document.createElement( 'a' );
+			parser.href = url;
+
+			// Check if the protocol is allowed
+			var protocol = parser.protocol.toLowerCase();
+			if ( this.allowedProtocols.indexOf( protocol) === -1 ) {
+				return this.defaultDonateUrl;
+			}
+
+			return url;
 		}
+
 	};
 
 	// Expose to global scope

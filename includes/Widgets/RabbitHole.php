@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\FundraisingWidgets\Widgets;
 use Parser;
 
 class RabbitHole {
+	use UrlValidator;
 
 	private const VALID_THEMES = [ 'light', 'dark' ];
 
@@ -192,7 +193,7 @@ class RabbitHole {
 			: 'light';
 		$donateAfter = max( 1, min( 10, (int)$params['donate-after'] ) );
 		$buttonText = $params['button-text'] ?: wfMessage( 'fundraisingwidgets-rabbithole-discover' )->text();
-		$donateLink = $params['button-link'] ?: 'https://donate.wikimedia.org';
+		$donateLink = self::sanitizeUrl( $params['button-link'] );
 
 		// Encode discoveries as JSON for JavaScript
 		$discoveriesJson = htmlspecialchars( json_encode( self::DISCOVERIES ), ENT_QUOTES );

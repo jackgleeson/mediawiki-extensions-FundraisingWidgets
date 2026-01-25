@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\FundraisingWidgets\Widgets;
 use Parser;
 
 class FundraisingImage {
+	use UrlValidator;
 
 	private const VALID_IMAGES = [ 'landscape', 'eagle', 'mountain', 'snow-leopard', 'frog', 'cat-lizard', 'regal-cat' ];
 	private const VALID_SIZES = [ 'small', 'medium', 'large' ];
@@ -48,7 +49,7 @@ class FundraisingImage {
 			: 'blue';
 		$caption = $params['caption'] !== '' ? $params['caption'] : 'You mean I can donate to this thing!!!';
 		$buttonText = $params['button-text'] ?: wfMessage( 'fundraisingwidgets-button-donate' )->text();
-		$buttonLink = $params['button-link'] ?: 'https://donate.wikimedia.org';
+		$buttonLink = self::sanitizeUrl( $params['button-link'] );
 
 		$imageUrl = self::IMAGE_URLS[$image] ?? self::IMAGE_URLS['snow-leopard'];
 

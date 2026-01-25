@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\FundraisingWidgets\Widgets;
 use Parser;
 
 class FundraisingBanner {
+	use UrlValidator;
 
 	private const VALID_LOGO_TYPES = [ 'globe', 'globe-hands', 'wordmark', 'combined', 'wmf', 'none' ];
 
@@ -24,7 +25,7 @@ class FundraisingBanner {
 		$message = $params['message'] ?: wfMessage( 'fundraisingwidgets-banner-default-message' )->text();
 		$dismissible = $params['dismissible'] === 'true';
 		$buttonText = $params['button-text'] ?: wfMessage( 'fundraisingwidgets-button-donate' )->text();
-		$buttonLink = $params['button-link'] ?: 'https://donate.wikimedia.org';
+		$buttonLink = self::sanitizeUrl( $params['button-link'] );
 		$logoType = in_array( $params['logo'], self::VALID_LOGO_TYPES, true )
 			? $params['logo']
 			: 'combined';
