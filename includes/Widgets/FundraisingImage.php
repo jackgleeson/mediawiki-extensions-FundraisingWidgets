@@ -69,7 +69,7 @@ class FundraisingImage {
 			$captionBarHtml = sprintf(
 				'<div class="frw-image-caption-bar">' .
 				'<p class="frw-image-caption">%s</p>' .
-				'<a href="%s" class="%s" role="button">' .
+				'<a href="%s" class="%s" role="button" target="_blank" rel="noopener">' .
 				'<span class="frw-button-text">%s</span>' .
 				'</a>' .
 				'</div>',
@@ -83,7 +83,7 @@ class FundraisingImage {
 		$buttonHtml = '';
 		if ( !$hasCaption ) {
 			$buttonHtml = sprintf(
-				'<a href="%s" class="%s" role="button">' .
+				'<a href="%s" class="%s" role="button" target="_blank" rel="noopener">' .
 				'<span class="frw-button-text">%s</span>' .
 				'</a>',
 				htmlspecialchars( $buttonLink, ENT_QUOTES ),

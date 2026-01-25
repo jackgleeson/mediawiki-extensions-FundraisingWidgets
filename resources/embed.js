@@ -142,6 +142,8 @@
 			button.href = link;
 			button.className = 'frw-donate-button frw-donate-button--' + this.escapeAttr( size ) + ' frw-donate-button--' + this.escapeAttr( color );
 			button.setAttribute( 'role', 'button' );
+			button.setAttribute( 'target', '_blank' );
+			button.setAttribute( 'rel', 'noopener' );
 
 			var span = document.createElement( 'span' );
 			span.className = 'frw-button-text';
@@ -224,6 +226,8 @@
 			donateBtn.href = buttonLink;
 			donateBtn.className = 'frw-donate-button frw-donate-button--medium';
 			donateBtn.setAttribute( 'role', 'button' );
+			donateBtn.setAttribute( 'target', '_blank' );
+			donateBtn.setAttribute( 'rel', 'noopener' );
 
 			var btnSpan = document.createElement( 'span' );
 			btnSpan.className = 'frw-button-text';
@@ -293,6 +297,8 @@
 				donateBtn.href = buttonLink;
 				donateBtn.className = buttonClass;
 				donateBtn.setAttribute( 'role', 'button' );
+				donateBtn.setAttribute( 'target', '_blank' );
+				donateBtn.setAttribute( 'rel', 'noopener' );
 
 				var btnSpan = document.createElement( 'span' );
 				btnSpan.className = 'frw-button-text';
@@ -318,6 +324,8 @@
 				donateBtn2.href = buttonLink;
 				donateBtn2.className = buttonClass;
 				donateBtn2.setAttribute( 'role', 'button' );
+				donateBtn2.setAttribute( 'target', '_blank' );
+				donateBtn2.setAttribute( 'rel', 'noopener' );
 
 				var btnSpan2 = document.createElement( 'span' );
 				btnSpan2.className = 'frw-button-text';
@@ -529,7 +537,7 @@
 			var donate = document.createElement( 'div' );
 			donate.className = 'frw-rabbit-hole-donate frw-rabbit-hole-donate--hidden';
 			donate.innerHTML = '<p class="frw-rabbit-hole-donate-message">Enjoying the journey? Wikipedia is free, but not free to run. Help keep knowledge accessible for everyone.</p>' +
-				'<a href="' + this.escapeAttr( donateLink ) + '" class="frw-donate-button frw-donate-button--medium frw-donate-button--green" role="button">' +
+				'<a href="' + this.escapeAttr( donateLink ) + '" class="frw-donate-button frw-donate-button--medium frw-donate-button--green" role="button" target="_blank" rel="noopener">' +
 				'<span class="frw-button-text">Donate</span></a>';
 
 			content.appendChild( intro );

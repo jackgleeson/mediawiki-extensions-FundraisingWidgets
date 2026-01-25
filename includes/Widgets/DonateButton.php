@@ -35,7 +35,7 @@ class DonateButton {
 		$link = self::sanitizeUrl( $params['button-link'] );
 
 		$html = sprintf(
-			'<a href="%s" class="frw-donate-button frw-donate-button--%s frw-donate-button--%s" role="button"><span class="frw-button-text">%s</span></a>',
+			'<a href="%s" class="frw-donate-button frw-donate-button--%s frw-donate-button--%s" role="button" target="_blank" rel="noopener"><span class="frw-button-text">%s</span></a>',
 			htmlspecialchars( $link, ENT_QUOTES ),
 			htmlspecialchars( $size, ENT_QUOTES ),
 			htmlspecialchars( $color, ENT_QUOTES ),

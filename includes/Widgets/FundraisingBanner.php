@@ -46,7 +46,7 @@ class FundraisingBanner {
 			'%s' .
 			'<div class="frw-banner-content">' .
 			'<p class="frw-banner-message">%s</p>' .
-			'<a href="%s" class="frw-donate-button frw-donate-button--medium" role="button">' .
+			'<a href="%s" class="frw-donate-button frw-donate-button--medium" role="button" target="_blank" rel="noopener">' .
 			'<span class="frw-button-text">%s</span>' .
 			'</a>' .
 			'</div>' .
