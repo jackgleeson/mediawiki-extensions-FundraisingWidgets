@@ -12,6 +12,13 @@
 ( function ( global ) {
 	'use strict';
 
+	// Guard against multiple script inclusions
+	if ( global.FundraisingWidgets ) {
+		// Script already loaded, just render any new (unprocessed) widgets
+		global.FundraisingWidgets.renderWidgets();
+		return;
+	}
+
 	var DEFAULT_DONATE_URL = 'https://donate.wikimedia.org';
 	var ALLOWED_PROTOCOLS = [ 'https:', 'http:' ];
 
@@ -83,7 +90,7 @@
 		 * Render all widgets found in the DOM
 		 */
 		renderWidgets: function () {
-			var containers = document.querySelectorAll( '.frw-embed' );
+			var containers = document.querySelectorAll( '.frw-embed:not([data-frw-rendered])' );
 			for ( var i = 0; i < containers.length; i++ ) {
 				this.renderWidget( containers[ i ] );
 			}
@@ -93,6 +100,11 @@
 		 * Render a single widget
 		 */
 		renderWidget: function ( container ) {
+			// Skip if already rendered
+			if ( container.getAttribute( 'data-frw-rendered' ) ) {
+				return;
+			}
+
 			var widgetType = container.getAttribute( 'data-widget' );
 
 			switch ( widgetType ) {
@@ -110,7 +122,11 @@
 					break;
 				default:
 					console.warn( 'FundraisingWidgets: Unknown widget type "' + widgetType + '"' );
+					return; // Don't mark as rendered if unknown type
 			}
+
+			// Mark as rendered to prevent duplicate processing
+			container.setAttribute( 'data-frw-rendered', 'true' );
 		},
 
 		/**
