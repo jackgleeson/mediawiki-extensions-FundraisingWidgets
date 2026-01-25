@@ -4,6 +4,31 @@
 ( function () {
 	'use strict';
 
+	var DEFAULT_DONATE_URL = 'https://donate.wikimedia.org';
+	var ALLOWED_PROTOCOLS = [ 'https:', 'http:' ];
+
+	/**
+	 * Sanitise a URL to prevent javascript: and other dangerous protocols
+	 *
+	 * @param {string} url The URL to sanitise
+	 * @return {string} A safe URL
+	 */
+	function sanitiseUrl( url ) {
+		if ( !url || url === '' ) {
+			return DEFAULT_DONATE_URL;
+		}
+
+		var parser = document.createElement( 'a' );
+		parser.href = url;
+
+		var protocol = parser.protocol.toLowerCase();
+		if ( ALLOWED_PROTOCOLS.indexOf( protocol ) === -1 ) {
+			return DEFAULT_DONATE_URL;
+		}
+
+		return url;
+	}
+
 	/**
 	 * Initialize banner dismiss functionality
 	 */
@@ -54,7 +79,7 @@
 			var seenIndices = [];
 			var clickCount = 0;
 			var donateAfter = parseInt( widget.dataset.donateAfter, 10 ) || 3;
-			var donateLink = widget.dataset.buttonLink || 'https://donate.wikimedia.org';
+			var donateLink = sanitiseUrl( widget.dataset.buttonLink );
 
 			// Parse discoveries from data attribute
 			try {

@@ -12,18 +12,15 @@
 ( function ( global ) {
 	'use strict';
 
+	var DEFAULT_DONATE_URL = 'https://donate.wikimedia.org';
+	var ALLOWED_PROTOCOLS = [ 'https:', 'http:' ];
+
 	var FundraisingWidgets = {
 		// Base URL for assets (will be auto-detected from script src)
 		baseUrl: '',
 
 		// CSS loaded flag
 		cssLoaded: false,
-
-		// Default donate URL
-		defaultDonateUrl: 'https://donate.wikimedia.org',
-
-		// Allowed URL protocols
-		allowedProtocols: [ 'https:', 'http:' ],
 
 		// Wikimedia Commons image URLs for external embedding
 		commonsImages: {
@@ -565,11 +562,11 @@
 			function showDiscovery( disc ) {
 				discovery.innerHTML =
 					'<h4 class="frw-rabbit-hole-discovery-title">' +
-					'<a href="' + self.escapeAttr( disc.url ) + '" target="_blank" rel="noopener">' +
+					'<a href="' + self.escapeHtml( disc.url ) + '" target="_blank" rel="noopener">' +
 					self.escapeHtml( disc.title ) +
 					'</a></h4>' +
 					'<p class="frw-rabbit-hole-discovery-fact">' + self.escapeHtml( disc.fact ) + '</p>' +
-					'<a href="' + self.escapeAttr( disc.url ) + '" class="frw-rabbit-hole-discovery-link" target="_blank" rel="noopener">' +
+					'<a href="' + self.escapeHtml( disc.url ) + '" class="frw-rabbit-hole-discovery-link" target="_blank" rel="noopener">' +
 					'Read more on Wikipedia →</a>';
 
 				discovery.classList.remove( 'frw-rabbit-hole-discovery--hidden' );
@@ -644,8 +641,8 @@
 		 * @return {string} A safe URL
 		 */
 		sanitiseURL: function ( url ) {
-			if( !url || url === '' ) {
-				return this.defaultDonateUrl;
+			if ( !url || url === '' ) {
+				return DEFAULT_DONATE_URL;
 			}
 
 			// Create an anchor element to parse the URL
@@ -654,8 +651,8 @@
 
 			// Check if the protocol is allowed
 			var protocol = parser.protocol.toLowerCase();
-			if ( this.allowedProtocols.indexOf( protocol) === -1 ) {
-				return this.defaultDonateUrl;
+			if ( ALLOWED_PROTOCOLS.indexOf( protocol ) === -1 ) {
+				return DEFAULT_DONATE_URL;
 			}
 
 			return url;

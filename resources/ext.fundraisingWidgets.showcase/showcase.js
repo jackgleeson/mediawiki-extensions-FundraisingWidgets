@@ -7,6 +7,30 @@
 
 	var serverUrl = mw.config.get( 'wgServer' );
 	var extensionPath = mw.config.get( 'wgExtensionAssetsPath' ) + '/FundraisingWidgets';
+	var DEFAULT_DONATE_URL = 'https://donate.wikimedia.org';
+	var ALLOWED_PROTOCOLS = [ 'https:', 'http:' ];
+
+	/**
+	 * Sanitise a URL to prevent javascript: and other dangerous protocols
+	 *
+	 * @param {string} url The URL to sanitise
+	 * @return {string} A safe URL
+	 */
+	function sanitiseUrl( url ) {
+		if ( !url || url === '' ) {
+			return DEFAULT_DONATE_URL;
+		}
+
+		var parser = document.createElement( 'a' );
+		parser.href = url;
+
+		var protocol = parser.protocol.toLowerCase();
+		if ( ALLOWED_PROTOCOLS.indexOf( protocol ) === -1 ) {
+			return DEFAULT_DONATE_URL;
+		}
+
+		return url;
+	}
 
 	/**
 	 * Initialize format tab switching
@@ -62,7 +86,7 @@
 		function updateButtonPreview() {
 			var size = sizeSelect.value;
 			var text = textInput.value || 'Support Wikipedia';
-			var link = ( linkInput && linkInput.value ) || 'https://donate.wikimedia.org';
+			var link = sanitiseUrl( linkInput && linkInput.value );
 
 			preview.innerHTML = '<a href="' + escapeHtml( link ) + '" ' +
 				'class="frw-donate-button frw-donate-button--' + escapeHtml( size ) + ' frw-donate-button--' + escapeHtml( currentColor ) + '" role="button">' +
@@ -171,7 +195,7 @@
 		function updateBannerPreview() {
 			var message = messageInput.value || 'If Wikipedia has given you useful knowledge this year, please give back. There are no small contributions: every edit counts, every donation counts.';
 			var buttonText = buttonTextInput.value || 'Donate';
-			var buttonLink = ( buttonLinkInput && buttonLinkInput.value ) || 'https://donate.wikimedia.org';
+			var buttonLink = sanitiseUrl( buttonLinkInput && buttonLinkInput.value );
 			var dismissible = dismissibleCheckbox.checked;
 			var logoType = logoSelect.value;
 
@@ -284,7 +308,7 @@
 			var size = sizeSelect.value;
 			var position = positionSelect.value;
 			var caption = captionInput.value;
-			var buttonLink = ( buttonLinkInput && buttonLinkInput.value ) || 'https://donate.wikimedia.org';
+			var buttonLink = sanitiseUrl( buttonLinkInput && buttonLinkInput.value );
 			var imageUrl = imageUrls[ image ] || imageUrls[ 'snow-leopard' ];
 
 			var hasCaption = caption.length > 0;
@@ -438,7 +462,7 @@
 			var theme = themeSelect.value;
 			var donateAfter = parseInt( donateAfterSelect.value, 10 ) || 3;
 			var buttonText = buttonTextInput.value || 'Discover something new';
-			var buttonLink = ( buttonLinkInput && buttonLinkInput.value ) || 'https://donate.wikimedia.org';
+			var buttonLink = sanitiseUrl( buttonLinkInput && buttonLinkInput.value );
 
 			preview.innerHTML = '<div class="frw-rabbit-hole frw-rabbit-hole--' + escapeHtml( theme ) + '">' +
 				'<div class="frw-rabbit-hole-content">' +
