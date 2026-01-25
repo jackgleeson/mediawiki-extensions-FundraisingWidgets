@@ -20,7 +20,8 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"FundraisingWidgetsMagic": "FundraisingWidgets.i18n.magic.php"
+		"FundraisingWidgetsMagic": "FundraisingWidgets.i18n.magic.php",
+		"FundraisingWidgetsAlias": "FundraisingWidgets.i18n.alias.php"
 	},
 	"SpecialPages": {
 		"FundraisingWidgets": "MediaWiki\\Extension\\FundraisingWidgets\\SpecialFundraisingWidgets"
