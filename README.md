@@ -25,24 +25,44 @@ A MediaWiki extension providing reusable widget components for fundraising banne
 
 ### Donate Button
 
+![Donate Button](docs/screenshots/donate-button.png)
+
 A customizable donation button with multiple sizes and colors.
 
 ```wikitext
-{{#fundraising-button: size=medium | text=Support Wikipedia | color=blue }}
+{{#fundraising-button: size=medium | text=Support Wikipedia | color=yellow }}
 ```
 
 **Parameters:**
 - `size` - small, medium, large (default: medium)
 - `text` - Button text (default: "Support Wikipedia")
-- `color` - blue, purple, green, red, yellow (default: blue)
+- `color` - blue, purple, green, red, yellow (default: yellow)
 - `button-link` - Destination URL (default: https://donate.wikimedia.org)
 
+### Built on Wikipedia Button
+
+![Built on Wikipedia Button](docs/screenshots/wikipedia-button.png)
+
+A button for sites that use Wikipedia content, linking back to Wikipedia.
+
+```wikitext
+{{#fundraising-wikipedia-button: size=medium | text=Built on Wikipedia | color=yellow }}
+```
+
+**Parameters:**
+- `size` - small, medium, large (default: medium)
+- `text` - Button text (default: "Built on Wikipedia")
+- `color` - blue, purple, green, red, yellow (default: yellow)
+- `button-link` - Destination URL (default: https://www.wikipedia.org)
+
 ### Fundraising Banner
+
+![Fundraising Banner](docs/screenshots/banner.png)
 
 A banner with logo, message, and call-to-action button.
 
 ```wikitext
-{{#fundraising-banner: message=Your message here | logo=globe | dismissible=true }}
+{{#fundraising-banner: message=Your message here | logo=globe | dismissible=true | sizing=dynamic }}
 ```
 
 **Parameters:**
@@ -51,8 +71,13 @@ A banner with logo, message, and call-to-action button.
 - `button-link` - Button destination URL
 - `logo` - globe, globe-hands, combined, wordmark, wmf, none
 - `dismissible` - true/false
+- `sizing` - dynamic, fixed (default: dynamic). Dynamic fills container width, fixed uses specified dimensions.
+- `width` - Width when sizing=fixed (default: "600px")
+- `height` - Height when sizing=fixed (default: "auto")
 
 ### Image Widget
+
+![Image Widget](docs/screenshots/image-widget.png)
 
 An image with a caption bar and donate button.
 
@@ -70,6 +95,8 @@ An image with a caption bar and donate button.
 - `button-link` - Button destination URL (default: https://donate.wikimedia.org)
 
 ### Wikipedia Rabbit Hole
+
+![Wikipedia Rabbit Hole](docs/screenshots/rabbit-hole.png)
 
 An interactive widget that displays random Wikipedia facts, with a donate prompt after a configurable number of discoveries.
 
@@ -93,10 +120,11 @@ Widgets can be embedded on external sites using the JavaScript embed script:
 ```
 
 The script auto-initializes when the DOM is ready. Available widget types:
-- `button`
-- `banner`
-- `image`
-- `rabbithole`
+- `button` - Donate button
+- `fundraising-wikipedia-button` - Built on Wikipedia button
+- `banner` - Fundraising banner
+- `image` - Image widget
+- `rabbithole` - Wikipedia Rabbit Hole
 
 ## Widget Configurator
 
