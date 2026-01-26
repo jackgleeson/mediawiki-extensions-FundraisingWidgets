@@ -8,6 +8,7 @@ class FundraisingBanner {
 	use UrlValidator;
 
 	private const VALID_LOGO_TYPES = [ 'globe', 'globe-hands', 'wordmark', 'combined', 'wmf', 'none' ];
+	private const VALID_SIZING = [ 'dynamic', 'fixed' ];
 
 	/**
 	 * Render the fundraising banner widget
@@ -29,6 +30,11 @@ class FundraisingBanner {
 		$logoType = in_array( $params['logo'], self::VALID_LOGO_TYPES, true )
 			? $params['logo']
 			: 'combined';
+		$sizing = in_array( $params['sizing'], self::VALID_SIZING, true )
+			? $params['sizing']
+			: 'dynamic';
+		$width = $params['width'] ?: '600px';
+		$height = $params['height'] ?: 'auto';
 
 		$logoHtml = self::renderLogo( $logoType );
 
@@ -40,8 +46,27 @@ class FundraisingBanner {
 				'</button>';
 		}
 
+		// Build class list
+		$classes = 'frw-banner';
+		if ( $dismissible ) {
+			$classes .= ' frw-banner--dismissible';
+		}
+		if ( $sizing === 'dynamic' ) {
+			$classes .= ' frw-banner--dynamic';
+		}
+
+		// Build style attribute for fixed sizing
+		$styleAttr = '';
+		if ( $sizing === 'fixed' ) {
+			$styleAttr = sprintf(
+				' style="width: %s; height: %s;"',
+				htmlspecialchars( $width, ENT_QUOTES ),
+				htmlspecialchars( $height, ENT_QUOTES )
+			);
+		}
+
 		$html = sprintf(
-			'<div class="frw-banner%s" role="banner">' .
+			'<div class="%s"%s role="banner">' .
 			'%s' .
 			'%s' .
 			'<div class="frw-banner-content">' .
@@ -51,7 +76,8 @@ class FundraisingBanner {
 			'</a>' .
 			'</div>' .
 			'</div>',
-			$dismissible ? ' frw-banner--dismissible' : '',
+			$classes,
+			$styleAttr,
 			$closeButton,
 			$logoHtml,
 			htmlspecialchars( $message, ENT_QUOTES ),
@@ -111,6 +137,9 @@ class FundraisingBanner {
 			'button-text' => '',
 			'button-link' => '',
 			'logo' => 'globe',
+			'sizing' => 'dynamic',
+			'width' => '',
+			'height' => '',
 		];
 
 		foreach ( $args as $arg ) {

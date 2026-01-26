@@ -187,10 +187,26 @@
 			var buttonLink = this.sanitiseURL( container.getAttribute( 'data-button-link' ) );
 			var logo = container.getAttribute( 'data-logo' ) || 'globe';
 			var dismissible = container.getAttribute( 'data-dismissible' ) === 'true';
+			var sizing = container.getAttribute( 'data-sizing' ) || 'dynamic';
+			var width = container.getAttribute( 'data-width' ) || '600px';
+			var height = container.getAttribute( 'data-height' ) || 'auto';
 
 			var banner = document.createElement( 'div' );
-			banner.className = 'frw-banner' + ( dismissible ? ' frw-banner--dismissible' : '' );
+			var bannerClass = 'frw-banner';
+			if ( dismissible ) {
+				bannerClass += ' frw-banner--dismissible';
+			}
+			if ( sizing === 'dynamic' ) {
+				bannerClass += ' frw-banner--dynamic';
+			}
+			banner.className = bannerClass;
 			banner.setAttribute( 'role', 'banner' );
+
+			// Apply fixed dimensions if sizing is fixed
+			if ( sizing === 'fixed' ) {
+				banner.style.width = width;
+				banner.style.height = height;
+			}
 
 			// Close button
 			if ( dismissible ) {

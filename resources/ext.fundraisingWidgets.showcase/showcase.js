@@ -145,6 +145,9 @@
 		var buttonLinkInput = document.getElementById( 'frw-banner-button-link' );
 		var dismissibleCheckbox = document.getElementById( 'frw-banner-dismissible' );
 		var logoSelect = document.getElementById( 'frw-banner-logo' );
+		var sizingSelect = document.getElementById( 'frw-banner-sizing' );
+		var widthInput = document.getElementById( 'frw-banner-width' );
+		var heightInput = document.getElementById( 'frw-banner-height' );
 		var preview = document.getElementById( 'frw-banner-preview' );
 		var codeOutputWikitext = document.getElementById( 'frw-banner-code-wikitext' );
 		var codeOutputJs = document.getElementById( 'frw-banner-code-js' );
@@ -152,8 +155,6 @@
 		if ( !messageInput || !preview ) {
 			return;
 		}
-
-		var basePath = mw.config.get( 'wgExtensionAssetsPath' ) + '/FundraisingWidgets/resources/images/';
 
 		// Wikimedia Commons URLs for consistent external access
 		var commonsImages = {
@@ -193,12 +194,28 @@
 			return html;
 		}
 
+		function toggleSizingFields() {
+			var isDynamic = sizingSelect.value === 'dynamic';
+			var widthField = widthInput.closest( '.frw-config-field' );
+			var heightField = heightInput.closest( '.frw-config-field' );
+
+			if ( widthField ) {
+				widthField.style.display = isDynamic ? 'none' : '';
+			}
+			if ( heightField ) {
+				heightField.style.display = isDynamic ? 'none' : '';
+			}
+		}
+
 		function updateBannerPreview() {
 			var message = messageInput.value || 'If Wikipedia has given you useful knowledge this year, please give back. There are no small contributions: every edit counts, every donation counts.';
 			var buttonText = buttonTextInput.value || 'Donate';
 			var buttonLink = sanitiseUrl( buttonLinkInput && buttonLinkInput.value );
 			var dismissible = dismissibleCheckbox.checked;
 			var logoType = logoSelect.value;
+			var sizing = sizingSelect.value;
+			var width = widthInput.value || '600px';
+			var height = heightInput.value || 'auto';
 
 			var closeButton = '';
 			if ( dismissible ) {
@@ -209,7 +226,20 @@
 
 			var logoHtml = getLogoHtml( logoType );
 
-			preview.innerHTML = '<div class="frw-banner' + ( dismissible ? ' frw-banner--dismissible' : '' ) + '" role="banner">' +
+			var bannerClass = 'frw-banner';
+			if ( dismissible ) {
+				bannerClass += ' frw-banner--dismissible';
+			}
+			if ( sizing === 'dynamic' ) {
+				bannerClass += ' frw-banner--dynamic';
+			}
+
+			var styleAttr = '';
+			if ( sizing === 'fixed' ) {
+				styleAttr = ' style="width: ' + escapeAttr( width ) + '; height: ' + escapeAttr( height ) + ';"';
+			}
+
+			preview.innerHTML = '<div class="' + bannerClass + '"' + styleAttr + ' role="banner">' +
 				closeButton +
 				logoHtml +
 				'<div class="frw-banner-content">' +
@@ -233,6 +263,10 @@
 			}
 			wikitextCode += ' | logo=' + logoType;
 			wikitextCode += ' | dismissible=' + ( dismissible ? 'true' : 'false' );
+			wikitextCode += ' | sizing=' + sizing;
+			if ( sizing === 'fixed' ) {
+				wikitextCode += ' | width=' + width + ' | height=' + height;
+			}
 			wikitextCode += ' }}';
 			codeOutputWikitext.textContent = wikitextCode;
 
@@ -245,7 +279,12 @@
 			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
 				jsCode += ' data-button-link="' + escapeAttr( buttonLink ) + '"';
 			}
-			jsCode += ' data-logo="' + logoType + '" data-dismissible="' + ( dismissible ? 'true' : 'false' ) + '"></div>';
+			jsCode += ' data-logo="' + logoType + '" data-dismissible="' + ( dismissible ? 'true' : 'false' ) + '"';
+			jsCode += ' data-sizing="' + sizing + '"';
+			if ( sizing === 'fixed' ) {
+				jsCode += ' data-width="' + escapeAttr( width ) + '" data-height="' + escapeAttr( height ) + '"';
+			}
+			jsCode += '></div>';
 			codeOutputJs.textContent = jsCode;
 		}
 
@@ -254,8 +293,15 @@
 		buttonLinkInput.addEventListener( 'input', updateBannerPreview );
 		dismissibleCheckbox.addEventListener( 'change', updateBannerPreview );
 		logoSelect.addEventListener( 'change', updateBannerPreview );
+		sizingSelect.addEventListener( 'change', function () {
+			toggleSizingFields();
+			updateBannerPreview();
+		} );
+		widthInput.addEventListener( 'input', updateBannerPreview );
+		heightInput.addEventListener( 'input', updateBannerPreview );
 
-		// Initialize close button on initial preview
+		// Initialize
+		toggleSizingFields();
 		initBannerCloseButtons( preview );
 	}
 

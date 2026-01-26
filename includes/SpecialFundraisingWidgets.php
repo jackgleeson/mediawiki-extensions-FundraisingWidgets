@@ -130,15 +130,21 @@ class SpecialFundraisingWidgets extends SpecialPage {
 						'none' => 'fundraisingwidgets-logo-none',
 					], 'globe' ) .
 					$this->buildCheckboxField( 'frw-banner-dismissible', 'fundraisingwidgets-config-dismissible', true ) .
+					$this->buildSelectField( 'frw-banner-sizing', 'fundraisingwidgets-config-sizing', [
+						'dynamic' => 'fundraisingwidgets-sizing-dynamic',
+						'fixed' => 'fundraisingwidgets-sizing-fixed',
+					], 'dynamic' ) .
+					$this->buildTextField( 'frw-banner-width', 'fundraisingwidgets-config-width', '600px' ) .
+					$this->buildTextField( 'frw-banner-height', 'fundraisingwidgets-config-height', 'auto' ) .
 					$this->buildTextField( 'frw-banner-button-link', 'fundraisingwidgets-config-button-link', self::DONATE_URL, true )
 				)
 			)
 		);
 
 		// Generated code
-		$wikitextCode = '{{#fundraising-banner: message=' . $defaultMessage . ' | logo=globe | dismissible=true }}';
+		$wikitextCode = '{{#fundraising-banner: message=' . $defaultMessage . ' | logo=globe | dismissible=true | sizing=dynamic }}';
 		$jsCode = '<script src="' . $this->getEmbedScriptUrl() . '"></script>' . "\n" .
-			'<div class="frw-embed" data-widget="banner" data-message="' . $defaultMessage . '" data-logo="globe" data-dismissible="true"></div>';
+			'<div class="frw-embed" data-widget="banner" data-message="' . $defaultMessage . '" data-logo="globe" data-dismissible="true" data-sizing="dynamic"></div>';
 
 		$out->addHTML( $this->buildCodeSection( 'frw-banner', $wikitextCode, $jsCode ) );
 		$out->addHTML( Html::closeElement( 'div' ) );
@@ -170,7 +176,7 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			)
 		);
 
-		return Html::rawElement( 'div', [ 'class' => 'frw-banner frw-banner--dismissible', 'role' => 'banner' ],
+		return Html::rawElement( 'div', [ 'class' => 'frw-banner frw-banner--dismissible frw-banner--dynamic', 'role' => 'banner' ],
 			$closeButton . $logo . $content
 		);
 	}

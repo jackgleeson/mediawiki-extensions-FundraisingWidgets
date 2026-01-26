@@ -51,6 +51,11 @@
 	gap: 24px;
 }
 
+/* Banner section spans full width */
+#frw-section-banner {
+	grid-column: 1 / -1;
+}
+
 .frw-showcase-section {
 	background-color: #fff;
 	border-radius: 16px;
@@ -102,7 +107,6 @@
 
 .frw-preview-area--wide {
 	width: 100%;
-	max-width: 600px;
 }
 
 /* Configuration area */
@@ -398,7 +402,19 @@ textarea.frw-config-input {
 /* Override banner styles in dark preview */
 .frw-showcase-preview .frw-banner {
 	background-color: #fff;
-	max-width: 100%;
+}
+
+/* Banner preview - allow full width when dynamic */
+#frw-section-banner .frw-showcase-preview {
+	align-items: stretch;
+}
+
+#frw-banner-preview {
+	width: 100%;
+}
+
+#frw-banner-preview .frw-banner--dynamic {
+	width: 100%;
 }
 
 /* Override amount selector in dark preview */

@@ -13,6 +13,12 @@
 	border: 1px solid var( --frw-color-border-subtle );
 	border-radius: var( --frw-border-radius );
 	box-shadow: var( --frw-box-shadow );
+	box-sizing: border-box;
+}
+
+/* Dynamic sizing - fills container width */
+.frw-banner--dynamic {
+	width: 100%;
 }
 
 .frw-banner--dismissible {

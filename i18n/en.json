@@ -71,6 +71,11 @@
 	"fundraisingwidgets-rabbithole-discover": "Discover something new",
 	"fundraisingwidgets-rabbithole-donate-message": "Enjoying the journey? Wikipedia is free, but not free to run. Help keep knowledge accessible for everyone.",
 	"fundraisingwidgets-coming-soon": "Coming soon",
+	"fundraisingwidgets-config-sizing": "Sizing",
+	"fundraisingwidgets-sizing-dynamic": "Dynamic (fills container)",
+	"fundraisingwidgets-sizing-fixed": "Fixed dimensions",
+	"fundraisingwidgets-config-width": "Width",
+	"fundraisingwidgets-config-height": "Height",
 	"fundraisingwidgets-special-wikipedia-button-title": "Built on Wikipedia Button",
 	"fundraisingwidgets-wikipedia-button-default-text": "Built on Wikipedia"
 }
