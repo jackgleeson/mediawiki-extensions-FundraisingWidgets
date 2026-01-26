@@ -73,7 +73,8 @@
 				'/resources/ext.fundraisingWidgets/donateButton.css',
 				'/resources/ext.fundraisingWidgets/banner.css',
 				'/resources/ext.fundraisingWidgets/imageWidget.css',
-				'/resources/ext.fundraisingWidgets/rabbitHole.css'
+				'/resources/ext.fundraisingWidgets/rabbitHole.css',
+				'/resources/ext.fundraisingWidgets/wikipediaButton.css'
 			];
 
 			for ( var i = 0; i < cssFiles.length; i++ ) {
@@ -109,7 +110,10 @@
 
 			switch ( widgetType ) {
 				case 'button':
-					this.renderButton( container );
+					this.renderDonateButton( container );
+					break;
+				case 'fundraising-wikipedia-button':
+					this.renderWikipediaButton( container );
 					break;
 				case 'banner':
 					this.renderBanner( container );
@@ -132,7 +136,7 @@
 		/**
 		 * Render a donate button widget
 		 */
-		renderButton: function ( container ) {
+		renderDonateButton: function ( container ) {
 			var size = container.getAttribute( 'data-size' ) || 'medium';
 			var text = container.getAttribute( 'data-text' ) || 'Support Wikipedia';
 			var color = container.getAttribute( 'data-color' ) || 'blue';
@@ -146,6 +150,27 @@
 			button.setAttribute( 'rel', 'noopener' );
 
 			var span = document.createElement( 'span' );
+			span.className = 'frw-button-text';
+			span.textContent = text;
+
+			button.appendChild( span );
+			container.appendChild( button );
+		},
+
+		renderWikipediaButton: function ( container ) {
+			var size = container.getAttribute( 'data-size' ) || 'medium';
+			var text = container.getAttribute( 'data-text' ) || 'Built on Wikipedia';
+			var color = container.getAttribute( 'data-color' ) || 'yellow';
+			var link = container.getAttribute( 'data-button-link' ) || 'https://www.wikipedia.org';
+
+			var button = document.createElement('a');
+			button.href = link;
+			button.className = 'frw-wikipedia-button frw-wikipedia-button--' + this.escapeAttr( size ) + ' frw-wikipedia-button--' + this.escapeAttr( color );
+			button.setAttribute('role', 'button');
+			button.setAttribute('target', '_blank');
+			button.setAttribute('rel', 'noopener');
+
+			var span = document.createElement('span');
 			span.className = 'frw-button-text';
 			span.textContent = text;
 
@@ -680,8 +705,7 @@
 			}
 
 			return url;
-		}
-
+		},
 	};
 
 	// Expose to global scope

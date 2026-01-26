@@ -6,6 +6,7 @@ use MediaWiki\Extension\FundraisingWidgets\Widgets\DonateButton;
 use MediaWiki\Extension\FundraisingWidgets\Widgets\FundraisingBanner;
 use MediaWiki\Extension\FundraisingWidgets\Widgets\FundraisingImage;
 use MediaWiki\Extension\FundraisingWidgets\Widgets\RabbitHole;
+use MediaWiki\Extension\FundraisingWidgets\Widgets\WikipediaButton;
 use Parser;
 
 class FundraisingWidgetsHooks {
@@ -16,6 +17,11 @@ class FundraisingWidgetsHooks {
 	 * @param Parser $parser
 	 */
 	public static function onParserFirstCallInit( Parser $parser ): void {
+		$parser->setFunctionHook(
+			'fundraising-wikipedia-button',
+			[ WikipediaButton::class, 'render']
+		);
+
 		$parser->setFunctionHook(
 			'fundraising-button',
 			[ DonateButton::class, 'render' ]

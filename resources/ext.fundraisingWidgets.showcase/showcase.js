@@ -8,6 +8,7 @@
 	var serverUrl = mw.config.get( 'wgServer' );
 	var extensionPath = mw.config.get( 'wgExtensionAssetsPath' ) + '/FundraisingWidgets';
 	var DEFAULT_DONATE_URL = 'https://donate.wikimedia.org';
+	var DEFAULT_WIKIPEDIA_URL = 'https://www.wikipedia.org';
 	var ALLOWED_PROTOCOLS = [ 'https:', 'http:' ];
 
 	/**
@@ -564,6 +565,72 @@
 		updateRabbitHolePreview();
 	}
 
+	function initWikipediaButtonConfigurator() {
+		var sizeSelect = document.getElementById( 'frw-wikipedia-button-size');
+		var textInput = document.getElementById( 'frw-wikipedia-button-text' );
+		var linkInput = document.getElementById( 'frw-wikipedia-button-link' );
+		var preview = document.getElementById( 'frw-wikipedia-button-preview' );
+		var codeOutputWikitext = document.getElementById( 'frw-wikipedia-button-code-wikitext' );
+		var codeOutputJs = document.getElementById( 'frw-wikipedia-button-code-js' );
+		var colorPicker = document.getElementById( 'frw-wikipedia-button-colors' );
+
+		if ( !sizeSelect || !preview ) {
+			return;
+		}
+
+		var currentColor = 'blue';
+
+		function updateWikipediaButtonPreview() {
+			var size = sizeSelect.value;
+			var text = textInput.value || 'Built on Wikipedia';
+			var link = sanitiseUrl( linkInput && linkInput.value );
+
+			preview.innerHTML = '<a href="' + escapeHtml( link ) + '" ' +
+				'class="frw-wikipedia-button frw-wikipedia-button--' + escapeHtml( size ) + ' frw-wikipedia-button--' + escapeHtml( currentColor ) + '" role="button" target="_blank" rel="noopener">' +
+				'<span class="frw-button-text">' + escapeHtml( text ) + '</span>' +
+				'</a>';
+
+			// Update wikitext code output
+			var wikiTextCode = '{{#fundraising-wikipedia-button: size=' + size + ' | text=' + text + ' | color=' + currentColor;
+			if (link !== DEFAULT_WIKIPEDIA_URL) {
+				wikiTextCode += ' | button-link=' + link;
+			}
+			wikiTextCode += ' }}';
+			codeOutputWikitext.textContent = wikiTextCode;
+
+			// Update JavaScript code output
+			var jsCode = '<script src="' + serverUrl + extensionPath + '/resources/embed.js"></script>\n' +
+				'<div class="frw-embed" data-widget="fundraising-wikipedia-button" data-size="' + size + '" data-text="' + escapeAttr( text ) + '" data-color="' + currentColor + '"';
+			if ( link !== DEFAULT_WIKIPEDIA_URL ) {
+				jsCode += ' data-button-link="' + escapeAttr( link ) + '"';
+			}
+			jsCode += '></div>';
+			codeOutputJs.textContent = jsCode;
+		}
+
+		// Color picker functionality
+		if( colorPicker ) {
+			var colorButtons = colorPicker.querySelectorAll( '.frw-color-option' );
+			colorButtons.forEach( function (btn) {
+				btn.addEventListener( 'click', function() {
+					colorButtons.forEach( function ( b ) {
+						b.classList.remove('frw-color-option--selected');
+					});
+					btn.classList.add( 'frw-color-option--selected');
+					currentColor = btn.dataset.color;
+					updateWikipediaButtonPreview();
+				});
+			} );
+		}
+
+		sizeSelect.addEventListener( 'change', updateWikipediaButtonPreview);
+		textInput.addEventListener( 'input', updateWikipediaButtonPreview);
+		linkInput.addEventListener( 'input', updateWikipediaButtonPreview);
+
+		// Initial render
+		updateWikipediaButtonPreview();
+	}
+
 	/**
 	 * Initialize copy buttons
 	 */
@@ -635,6 +702,7 @@
 		initBannerConfigurator();
 		initImageConfigurator();
 		initRabbitHoleConfigurator();
+		initWikipediaButtonConfigurator();
 		initCopyButtons();
 	}
 

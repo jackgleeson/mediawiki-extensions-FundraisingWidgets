@@ -34,6 +34,7 @@
 			"styles": [
 				"ext.fundraisingWidgets/styles.css",
 				"ext.fundraisingWidgets/donateButton.css",
+				"ext.fundraisingWidgets/wikipediaButton.css",
 				"ext.fundraisingWidgets/banner.css",
 				"ext.fundraisingWidgets/imageWidget.css",
 				"ext.fundraisingWidgets/rabbitHole.css"

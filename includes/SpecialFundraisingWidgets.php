@@ -24,6 +24,7 @@ class SpecialFundraisingWidgets extends SpecialPage {
 
 		$this->showIntroduction();
 		$this->getOutput()->addHTML( Html::openElement( 'div', [ 'class' => 'frw-showcase-grid' ] ) );
+		$this->showWikipediaButtonSection();
 		$this->showDonateButtonSection();
 		$this->showBannerSection();
 		$this->showImageSection();
@@ -507,4 +508,89 @@ class SpecialFundraisingWidgets extends SpecialPage {
 	protected function getGroupName() {
 		return 'wiki';
 	}
+
+	private function showWikipediaButtonSection(): void {
+		$out = $this->getOutput();
+
+		$out->addHTML(
+			Html::openElement(
+				'div',
+				[
+					'class' => 'frw-showcase-section',
+					'id' => 'frw-section-wikipedia-button',
+				]
+			)
+		);
+		$out->addHTML(
+			Html::element( 'h2', [], $this->msg( 'fundraisingwidgets-special-wikipedia-button-title' )->text() )
+		);
+
+		// Preview area with color picker
+		$buttonPreview = Html::rawElement(
+			'a',
+			[
+				'href' => 'https://wikipedia.org',
+				'class' => 'frw-wikipedia-button frw-wikipedia-button--medium frw-wikipedia-button--blue',
+				'role' => 'button',
+			],
+			Html::element( 'span', [ 'class' => 'frw-button-text' ], 'Built on Wikipedia' )
+		);
+
+		$out->addHTML(
+			Html::rawElement(
+				'div',
+				[
+					'class' => 'frw-showcase-preview',
+					'id' => 'frw-wikipedia-button-preview-container',
+				],
+				Html::rawElement(
+					'div',
+					[
+						'class' => 'frw-preview-area',
+						'id' => 'frw-wikipedia-button-preview',
+					],
+					$buttonPreview
+				) . $this->buildcolorPicker( 'frw-wikipedia-button-colors' )
+			)
+		);
+
+		// Configuration form
+		$out->addHtml(
+			Html::rawElement(
+				'div',
+				[ 'class' => 'frw-showcase-config' ],
+				Html::rawElement(
+					'div',
+					[ 'class' => 'frw-config-form' ],
+					$this->buildTextField(
+						'frw-wikipedia-button-text',
+						'fundraisingwidgets-config-text',
+						'Built on Wikipedia'
+					) .
+					$this->buildSelectField( 'frw-wikipedia-button-size', 'fundraisingwidgets-config-size', [
+						'small' => 'fundraisingwidgets-size-small',
+						'medium' => 'fundraisingwidgets-size-medium',
+						'large' => 'fundraisingwidgets-size-large',
+					], 'medium' ) .
+					$this->buildTextField(
+						'frw-wikipedia-button-link',
+						'fundraisingwidgets-config-button-link',
+						'https://www.wikipedia.org',
+						true
+					)
+				)
+			)
+		);
+
+		$wikiTextCode = '{{#fundraising-wikipedia-button: size=medium | text=Built on Wikipedia | color=blue }}';
+		$jsCode = '<script src="' .
+			$this->getEmbedScriptUrl() .
+			'"></script>' .
+			"\n" .
+			'<div class="frw-embed" data-widget="fundraising-wikipedia-button" data-size="medium" data-text="Built on Wikipedia" data-color="blue"></div>';
+
+		$out->addHTML( $this->buildCodeSection( 'frw-wikipedia-button', $wikiTextCode, $jsCode ) );
+		$out->addHtml( Html::closeElement( 'div' ) );
+	}
+
 }
