@@ -18,7 +18,6 @@ class DonateButton {
 	 * @return array
 	 */
 	public static function render( Parser $parser, ...$args ): array {
-		$parser->getOutput()->addModules( [ 'ext.fundraisingWidgets.js' ] );
 		$parser->getOutput()->addModuleStyles( [ 'ext.fundraisingWidgets' ] );
 
 		$params = self::parseArgs( $args );
@@ -29,7 +28,7 @@ class DonateButton {
 
 		$color = in_array( $params['color'], self::VALID_COLORS, true )
 			? $params['color']
-			: 'blue';
+			: 'yellow';
 
 		$text = $params['text'] ?: 'Support Wikipedia';
 		$link = self::sanitizeUrl( $params['button-link'] );
@@ -54,7 +53,7 @@ class DonateButton {
 	private static function parseArgs( array $args ): array {
 		$params = [
 			'size' => 'medium',
-			'color' => 'blue',
+			'color' => 'yellow',
 			'text' => '',
 			'button-link' => '',
 		];

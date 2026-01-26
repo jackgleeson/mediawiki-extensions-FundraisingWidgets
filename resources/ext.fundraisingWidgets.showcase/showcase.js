@@ -81,7 +81,7 @@
 			return;
 		}
 
-		var currentColor = 'blue';
+		var currentColor = 'yellow';
 
 		function updateButtonPreview() {
 			var size = sizeSelect.value;

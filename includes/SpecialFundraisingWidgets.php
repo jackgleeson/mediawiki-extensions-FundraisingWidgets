@@ -61,7 +61,7 @@ class SpecialFundraisingWidgets extends SpecialPage {
 		$buttonPreview = Html::rawElement( 'a',
 			[
 				'href' => self::DONATE_URL,
-				'class' => 'frw-donate-button frw-donate-button--medium',
+				'class' => 'frw-donate-button frw-donate-button--medium frw-donate-button--yellow',
 				'role' => 'button'
 			],
 			Html::element( 'span', [ 'class' => 'frw-button-text' ], 'Support Wikipedia' )
@@ -70,7 +70,7 @@ class SpecialFundraisingWidgets extends SpecialPage {
 		$out->addHTML(
 			Html::rawElement( 'div', [ 'class' => 'frw-showcase-preview', 'id' => 'frw-button-preview-container' ],
 				Html::rawElement( 'div', [ 'class' => 'frw-preview-area', 'id' => 'frw-button-preview' ], $buttonPreview ) .
-				$this->buildColorPicker( 'frw-button-colors' )
+				$this->buildColorPicker( 'frw-button-colors', 'yellow' )
 			)
 		);
 
@@ -90,9 +90,9 @@ class SpecialFundraisingWidgets extends SpecialPage {
 		);
 
 		// Generated code
-		$wikitextCode = '{{#fundraising-button: size=medium | text=Support Wikipedia | color=blue }}';
+		$wikitextCode = '{{#fundraising-button: size=medium | text=Support Wikipedia | color=yellow }}';
 		$jsCode = '<script src="' . $this->getEmbedScriptUrl() . '"></script>' . "\n" .
-			'<div class="frw-embed" data-widget="button" data-size="medium" data-text="Support Wikipedia" data-color="blue"></div>';
+			'<div class="frw-embed" data-widget="button" data-size="medium" data-text="Support Wikipedia" data-color="yellow"></div>';
 
 		$out->addHTML( $this->buildCodeSection( 'frw-button', $wikitextCode, $jsCode ) );
 		$out->addHTML( Html::closeElement( 'div' ) );
@@ -344,12 +344,12 @@ class SpecialFundraisingWidgets extends SpecialPage {
 			'/FundraisingWidgets/resources/embed.js';
 	}
 
-	private function buildColorPicker( string $id ): string {
+	private function buildColorPicker( string $id, string $default = 'blue'): string {
 		$colors = [ 'blue', 'purple', 'green', 'red', 'yellow' ];
 		$buttons = '';
-		foreach ( $colors as $i => $color ) {
+		foreach ( $colors as $color ) {
 			$class = 'frw-color-option frw-color-option--' . $color;
-			if ( $i === 0 ) {
+			if ( $color === $default ) {
 				$class .= ' frw-color-option--selected';
 			}
 			$buttons .= Html::element( 'button', [
