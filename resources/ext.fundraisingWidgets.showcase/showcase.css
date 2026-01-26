@@ -2,45 +2,75 @@
  * FundraisingWidgets - Showcase Page Styles (Modern UI)
  */
 
+/* Hide Vector skin tools dropdown on showcase page */
+.vector-page-tools-dropdown,
+.vector-page-tools,
+#p-cactions {
+	display: none !important;
+}
+
 .frw-showcase-intro {
-	margin-bottom: 32px;
-	padding: 24px;
-	background: #eaecf0;
-	border: 1px solid #c8ccd1;
-	border-radius: 12px;
+	margin-bottom: 40px;
 }
 
 .frw-showcase-intro-lead {
-	margin: 0 0 20px 0;
-	font-size: 1.1rem;
+	margin: 0 0 24px 0;
+	font-size: 1.15rem;
 	line-height: 1.6;
-	color: #202122;
+	color: #54595d;
 }
 
 .frw-showcase-intro-options {
 	display: grid;
 	grid-template-columns: repeat( 2, 1fr );
-	gap: 16px;
+	gap: 20px;
 }
 
 .frw-showcase-intro-option {
-	padding: 16px;
+	padding: 24px;
 	background: #fff;
-	border: 1px solid #eaecf0;
-	border-radius: 8px;
+	border: 1px solid #e0e0e0;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.04 );
+	transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.frw-showcase-intro-option:hover {
+	border-color: #c8ccd1;
+	box-shadow: 0 4px 16px rgba( 0, 0, 0, 0.08 );
 }
 
 .frw-showcase-intro-option h3 {
 	margin: 0 0 8px 0;
-	font-size: 0.95rem;
+	font-size: 1.1rem;
 	font-weight: 600;
 	color: #202122;
 }
 
+.frw-showcase-intro-option h3::before {
+	display: inline-block;
+	margin-right: 10px;
+	font-size: 1.2rem;
+	vertical-align: middle;
+}
+
+.frw-showcase-intro-option:first-child h3::before {
+	content: "📦";
+}
+
+.frw-showcase-intro-option:last-child h3::before {
+	content: "</>";
+	font-family: monospace;
+	font-size: 0.9rem;
+	padding: 2px 6px;
+	background: #f0f0f0;
+	border-radius: 4px;
+}
+
 .frw-showcase-intro-option p {
 	margin: 0;
-	font-size: 0.875rem;
-	line-height: 1.5;
+	font-size: 0.9rem;
+	line-height: 1.6;
 	color: #54595d;
 }
 
