@@ -69,7 +69,7 @@
 			}
 
 			var cssFiles = [
-				'/resources/ext.fundraisingWidgets/variables.css',
+				'/resources/ext.fundraisingWidgets/styles.css',
 				'/resources/ext.fundraisingWidgets/donateButton.css',
 				'/resources/ext.fundraisingWidgets/banner.css',
 				'/resources/ext.fundraisingWidgets/imageWidget.css',
