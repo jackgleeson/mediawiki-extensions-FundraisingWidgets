@@ -157,4 +157,4 @@ GPL-2.0-or-later
 
 ## Author
 
-Wikimedia Foundation
+Jack Gleeson
