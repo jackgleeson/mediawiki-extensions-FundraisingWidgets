@@ -86,7 +86,8 @@ class SpecialFundraisingWidgets extends SpecialPage {
 						'large' => 'fundraisingwidgets-size-large',
 					], 'medium' ) .
 					$this->buildTextField( 'frw-button-link', 'fundraisingwidgets-config-button-link', self::DONATE_URL, true )
-				)
+				) .
+				$this->buildTrackingParamsSection( 'frw-button' )
 			)
 		);
 
@@ -137,7 +138,8 @@ class SpecialFundraisingWidgets extends SpecialPage {
 					$this->buildTextField( 'frw-banner-width', 'fundraisingwidgets-config-width', '600px' ) .
 					$this->buildTextField( 'frw-banner-height', 'fundraisingwidgets-config-height', 'auto' ) .
 					$this->buildTextField( 'frw-banner-button-link', 'fundraisingwidgets-config-button-link', self::DONATE_URL, true )
-				)
+				) .
+				$this->buildTrackingParamsSection( 'frw-banner' )
 			)
 		);
 
@@ -225,7 +227,8 @@ class SpecialFundraisingWidgets extends SpecialPage {
 					$this->buildTextField( 'frw-image-caption', 'fundraisingwidgets-config-caption', $defaultCaption, true,
 						'Caption text (leave empty to show button on image)' ) .
 					$this->buildTextField( 'frw-image-button-link', 'fundraisingwidgets-config-button-link', self::DONATE_URL )
-				)
+				) .
+				$this->buildTrackingParamsSection( 'frw-image' )
 			)
 		);
 
@@ -289,7 +292,8 @@ class SpecialFundraisingWidgets extends SpecialPage {
 					], '3' ) .
 					$this->buildTextField( 'frw-rabbithole-button-text', 'fundraisingwidgets-config-button-text', '', false, 'Discover something new' ) .
 					$this->buildTextField( 'frw-rabbithole-button-link', 'fundraisingwidgets-config-button-link', self::DONATE_URL )
-				)
+				) .
+				$this->buildTrackingParamsSection( 'frw-rabbithole' )
 			)
 		);
 
@@ -508,6 +512,27 @@ class SpecialFundraisingWidgets extends SpecialPage {
 		);
 	}
 
+	private function buildTrackingParamsSection( string $prefix ): string {
+		$fields = '';
+		foreach ( [ 'source', 'key', 'medium', 'campaign' ] as $param ) {
+			$fields .= Html::element( 'input', [
+				'type' => 'text',
+				'id' => $prefix . '-wmf-' . $param,
+				'class' => 'frw-config-input',
+				'placeholder' => 'wmf_' . $param,
+			] );
+		}
+
+		return Html::rawElement( 'div', [
+				'class' => 'frw-tracking-toggle',
+				'id' => $prefix . '-tracking-toggle',
+			], '&#9654; Add tracking parameters (wmf_*)' ) .
+			Html::rawElement( 'div', [
+				'class' => 'frw-tracking-fields frw-tracking-fields--hidden',
+				'id' => $prefix . '-tracking-fields',
+			], Html::rawElement( 'div', [ 'class' => 'frw-config-form' ], $fields ) );
+	}
+
 	/**
 	 * @return string
 	 */
@@ -584,7 +609,8 @@ class SpecialFundraisingWidgets extends SpecialPage {
 						'https://www.wikipedia.org',
 						true
 					)
-				)
+				) .
+				$this->buildTrackingParamsSection( 'frw-wikipedia-button' )
 			)
 		);
 

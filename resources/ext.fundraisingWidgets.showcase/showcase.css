@@ -301,6 +301,29 @@ textarea.frw-config-input {
 	font-size: 10px;
 }
 
+/* Tracking parameters toggle */
+.frw-tracking-toggle {
+	padding: 12px 0 0;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #5f7fff;
+	cursor: pointer;
+	user-select: none;
+}
+
+.frw-tracking-toggle:hover {
+	color: #36c;
+}
+
+/* Tracking parameter fields container */
+.frw-tracking-fields {
+	padding-top: 16px;
+}
+
+.frw-tracking-fields--hidden {
+	display: none;
+}
+
 /* Code output area */
 .frw-showcase-code {
 	padding: 0 24px 24px;

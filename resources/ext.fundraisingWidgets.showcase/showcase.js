@@ -34,6 +34,47 @@
 	}
 
 	/**
+	 * Append non-empty wmf_* tracking params to a URL
+	 */
+	function buildUrlWithTracking( baseUrl, prefix ) {
+		var params = [ 'source', 'key', 'medium', 'campaign' ];
+		var url = baseUrl;
+		var separator = url.indexOf( '?' ) === -1 ? '?' : '&';
+
+		params.forEach( function ( param ) {
+			var input = document.getElementById( prefix + '-wmf-' + param );
+			if ( input && input.value.trim() ) {
+				url += separator + 'wmf_' + param + '=' + encodeURIComponent( input.value.trim() );
+				separator = '&';
+			}
+		} );
+
+		return url;
+	}
+
+	/**
+	 * Initialize tracking params toggle and wire input listeners
+	 */
+	function initTrackingToggle( prefix, updateFn ) {
+		var toggle = document.getElementById( prefix + '-tracking-toggle' );
+		var fields = document.getElementById( prefix + '-tracking-fields' );
+
+		if ( !toggle || !fields ) {
+			return;
+		}
+
+		toggle.addEventListener( 'click', function () {
+			var hidden = fields.classList.toggle( 'frw-tracking-fields--hidden' );
+			toggle.innerHTML = ( hidden ? '&#9654;' : '&#9660;' ) + ' Add tracking parameters (wmf_*)';
+		} );
+
+		var inputs = fields.querySelectorAll( 'input' );
+		inputs.forEach( function ( input ) {
+			input.addEventListener( 'input', updateFn );
+		} );
+	}
+
+	/**
 	 * Initialize format tab switching
 	 */
 	function initFormatTabs() {
@@ -95,9 +136,10 @@
 				'</a>';
 
 			// Update wikitext code output
+			var codeLink = buildUrlWithTracking( link, 'frw-button' );
 			var wikitextCode = '{{#fundraising-button: size=' + size + ' | text=' + text + ' | color=' + currentColor;
-			if ( link !== 'https://donate.wikimedia.org' ) {
-				wikitextCode += ' | button-link=' + link;
+			if ( codeLink !== 'https://donate.wikimedia.org' ) {
+				wikitextCode += ' | button-link=' + codeLink;
 			}
 			wikitextCode += ' }}';
 			codeOutputWikitext.textContent = wikitextCode;
@@ -105,8 +147,8 @@
 			// Update JavaScript code output
 			var jsCode = '<script src="' + serverUrl + extensionPath + '/resources/embed.js"></script>\n' +
 				'<div class="frw-embed" data-widget="button" data-size="' + size + '" data-text="' + text + '" data-color="' + currentColor + '"';
-			if ( link !== 'https://donate.wikimedia.org' ) {
-				jsCode += ' data-button-link="' + escapeAttr( link ) + '"';
+			if ( codeLink !== 'https://donate.wikimedia.org' ) {
+				jsCode += ' data-button-link="' + escapeAttr( codeLink ) + '"';
 			}
 			jsCode += '></div>';
 			codeOutputJs.textContent = jsCode;
@@ -131,6 +173,7 @@
 		sizeSelect.addEventListener( 'change', updateButtonPreview );
 		textInput.addEventListener( 'input', updateButtonPreview );
 		linkInput.addEventListener( 'input', updateButtonPreview );
+		initTrackingToggle( 'frw-button', updateButtonPreview );
 
 		// Initial render
 		updateButtonPreview();
@@ -254,12 +297,13 @@
 			initBannerCloseButtons( preview );
 
 			// Update wikitext code output
+			var codeLink = buildUrlWithTracking( buttonLink, 'frw-banner' );
 			var wikitextCode = '{{#fundraising-banner: message=' + message;
 			if ( buttonText !== 'Donate' ) {
 				wikitextCode += ' | button-text=' + buttonText;
 			}
-			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
-				wikitextCode += ' | button-link=' + buttonLink;
+			if ( codeLink !== 'https://donate.wikimedia.org' ) {
+				wikitextCode += ' | button-link=' + codeLink;
 			}
 			wikitextCode += ' | logo=' + logoType;
 			wikitextCode += ' | dismissible=' + ( dismissible ? 'true' : 'false' );
@@ -276,8 +320,8 @@
 			if ( buttonText !== 'Donate' ) {
 				jsCode += ' data-button-text="' + escapeAttr( buttonText ) + '"';
 			}
-			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
-				jsCode += ' data-button-link="' + escapeAttr( buttonLink ) + '"';
+			if ( codeLink !== 'https://donate.wikimedia.org' ) {
+				jsCode += ' data-button-link="' + escapeAttr( codeLink ) + '"';
 			}
 			jsCode += ' data-logo="' + logoType + '" data-dismissible="' + ( dismissible ? 'true' : 'false' ) + '"';
 			jsCode += ' data-sizing="' + sizing + '"';
@@ -299,6 +343,7 @@
 		} );
 		widthInput.addEventListener( 'input', updateBannerPreview );
 		heightInput.addEventListener( 'input', updateBannerPreview );
+		initTrackingToggle( 'frw-banner', updateBannerPreview );
 
 		// Initialize
 		toggleSizingFields();
@@ -393,6 +438,7 @@
 				'</div>';
 
 			// Update wikitext code output
+			var codeLink = buildUrlWithTracking( buttonLink, 'frw-image' );
 			var wikitextCode = '{{#fundraising-image: image=' + image + ' | size=' + size;
 			if ( !hasCaption ) {
 				wikitextCode += ' | button-position=' + position;
@@ -401,8 +447,8 @@
 			if ( caption ) {
 				wikitextCode += ' | caption=' + caption;
 			}
-			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
-				wikitextCode += ' | button-link=' + buttonLink;
+			if ( codeLink !== 'https://donate.wikimedia.org' ) {
+				wikitextCode += ' | button-link=' + codeLink;
 			}
 			wikitextCode += ' }}';
 			codeOutputWikitext.textContent = wikitextCode;
@@ -417,8 +463,8 @@
 			if ( caption ) {
 				jsCode += ' data-caption="' + escapeAttr( caption ) + '"';
 			}
-			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
-				jsCode += ' data-button-link="' + escapeAttr( buttonLink ) + '"';
+			if ( codeLink !== 'https://donate.wikimedia.org' ) {
+				jsCode += ' data-button-link="' + escapeAttr( codeLink ) + '"';
 			}
 			jsCode += '></div>';
 			codeOutputJs.textContent = jsCode;
@@ -444,6 +490,7 @@
 		positionSelect.addEventListener( 'change', updateImagePreview );
 		captionInput.addEventListener( 'input', updateImagePreview );
 		buttonLinkInput.addEventListener( 'input', updateImagePreview );
+		initTrackingToggle( 'frw-image', updateImagePreview );
 
 		// Initial render
 		updateImagePreview();
@@ -579,12 +626,13 @@
 			} );
 
 			// Update wikitext code output
+			var codeLink = buildUrlWithTracking( buttonLink, 'frw-rabbithole' );
 			var wikitextCode = '{{#fundraising-rabbithole: theme=' + theme + ' | donate-after=' + donateAfter;
 			if ( buttonText !== 'Discover something new' ) {
 				wikitextCode += ' | button-text=' + buttonText;
 			}
-			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
-				wikitextCode += ' | button-link=' + buttonLink;
+			if ( codeLink !== 'https://donate.wikimedia.org' ) {
+				wikitextCode += ' | button-link=' + codeLink;
 			}
 			wikitextCode += ' }}';
 			codeOutputWikitext.textContent = wikitextCode;
@@ -595,8 +643,8 @@
 			if ( buttonText !== 'Discover something new' ) {
 				jsCode += ' data-button-text="' + escapeAttr( buttonText ) + '"';
 			}
-			if ( buttonLink !== 'https://donate.wikimedia.org' ) {
-				jsCode += ' data-button-link="' + escapeAttr( buttonLink ) + '"';
+			if ( codeLink !== 'https://donate.wikimedia.org' ) {
+				jsCode += ' data-button-link="' + escapeAttr( codeLink ) + '"';
 			}
 			jsCode += '></div>';
 			codeOutputJs.textContent = jsCode;
@@ -606,6 +654,7 @@
 		donateAfterSelect.addEventListener( 'change', updateRabbitHolePreview );
 		buttonTextInput.addEventListener( 'input', updateRabbitHolePreview );
 		buttonLinkInput.addEventListener( 'input', updateRabbitHolePreview );
+		initTrackingToggle( 'frw-rabbithole', updateRabbitHolePreview );
 
 		// Initial render
 		updateRabbitHolePreview();
@@ -637,9 +686,10 @@
 				'</a>';
 
 			// Update wikitext code output
+			var codeLink = buildUrlWithTracking( link, 'frw-wikipedia-button' );
 			var wikiTextCode = '{{#fundraising-wikipedia-button: size=' + size + ' | text=' + text + ' | color=' + currentColor;
-			if (link !== DEFAULT_WIKIPEDIA_URL) {
-				wikiTextCode += ' | button-link=' + link;
+			if (codeLink !== DEFAULT_WIKIPEDIA_URL) {
+				wikiTextCode += ' | button-link=' + codeLink;
 			}
 			wikiTextCode += ' }}';
 			codeOutputWikitext.textContent = wikiTextCode;
@@ -647,8 +697,8 @@
 			// Update JavaScript code output
 			var jsCode = '<script src="' + serverUrl + extensionPath + '/resources/embed.js"></script>\n' +
 				'<div class="frw-embed" data-widget="fundraising-wikipedia-button" data-size="' + size + '" data-text="' + escapeAttr( text ) + '" data-color="' + currentColor + '"';
-			if ( link !== DEFAULT_WIKIPEDIA_URL ) {
-				jsCode += ' data-button-link="' + escapeAttr( link ) + '"';
+			if ( codeLink !== DEFAULT_WIKIPEDIA_URL ) {
+				jsCode += ' data-button-link="' + escapeAttr( codeLink ) + '"';
 			}
 			jsCode += '></div>';
 			codeOutputJs.textContent = jsCode;
@@ -672,6 +722,7 @@
 		sizeSelect.addEventListener( 'change', updateWikipediaButtonPreview);
 		textInput.addEventListener( 'input', updateWikipediaButtonPreview);
 		linkInput.addEventListener( 'input', updateWikipediaButtonPreview);
+		initTrackingToggle( 'frw-wikipedia-button', updateWikipediaButtonPreview );
 
 		// Initial render
 		updateWikipediaButtonPreview();
