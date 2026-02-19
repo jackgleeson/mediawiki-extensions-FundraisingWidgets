@@ -23,9 +23,11 @@ A MediaWiki extension providing reusable widget components for fundraising banne
 
 ## Widgets
 
-### Donate Button
+### Buttons
 
-![Donate Button](docs/screenshots/donate-button.png)
+![Buttons](docs/screenshots/buttons.png)
+
+#### Donate Button
 
 A customizable donation button with multiple sizes and colors.
 
@@ -39,9 +41,7 @@ A customizable donation button with multiple sizes and colors.
 - `color` - blue, purple, green, red, yellow (default: yellow)
 - `button-link` - Destination URL (default: https://donate.wikimedia.org)
 
-### Built on Wikipedia Button
-
-![Built on Wikipedia Button](docs/screenshots/wikipedia-button.png)
+#### Built on Wikipedia Button
 
 A button for sites that use Wikipedia content, linking back to Wikipedia.
 
@@ -132,6 +132,7 @@ Visit `Special:FundraisingWidgets` on your wiki to:
 - Preview widgets with live configuration
 - Generate MediaWiki parser function code
 - Generate JavaScript embed code for external sites
+- Add optional Wikimedia tracking parameters (`wmf_source`, `wmf_key`, `wmf_medium`, `wmf_campaign`) to widget URLs in generated code
 
 ## Styling
 
